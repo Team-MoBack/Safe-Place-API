@@ -1,7 +1,7 @@
-DROP DATABASE  IF EXISTS `moBack`;
+DROP DATABASE  IF EXISTS `moBack_security`;
 
-CREATE DATABASE  IF NOT EXISTS `moBack`;
-USE `moBack`;
+CREATE DATABASE  IF NOT EXISTS `moBack_security`;
+USE `moBack_security`;
 
 --
 -- Table structure for table `users`
