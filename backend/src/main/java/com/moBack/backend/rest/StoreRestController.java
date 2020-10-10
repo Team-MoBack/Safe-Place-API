@@ -19,6 +19,8 @@ import com.moBack.backend.service.StoreService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/stores")
@@ -33,6 +35,10 @@ public class StoreRestController {
 	
 	@ApiOperation(value = "전체 스토어 정보를 받아옵니다 ")
 	@GetMapping("")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 에러")
+	})
 	public List<Store> findAll(){
 		return storeService.findAll();
 	}
@@ -40,6 +46,10 @@ public class StoreRestController {
 	@ApiOperation(value = "유저위치와 반경을 넘기면 주변 가게정보를 받아옵니다 ")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "radius", value = "반경", required = true, dataType = "double", paramType = "path")
+	})
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PostMapping("/search/{radius}")
 	public List<Store> findStoresFromPosition(@PathVariable double radius, @RequestBody Position center){
@@ -52,6 +62,11 @@ public class StoreRestController {
 		@ApiImplicitParam(name = "id", value = "가게 id", required = true, dataType = "int", paramType = "path")
 	})
 	@GetMapping("/{id}")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 400, message = "잘못된 접근"),
+		@ApiResponse(code = 500, message = "서버 에러")
+	})
 	public Store getStore(@PathVariable int id) {
 		Store store = storeService.findById(id);
 		if (store == null) {
@@ -62,6 +77,10 @@ public class StoreRestController {
 	
 	@ApiOperation(value = "가게를 등록합니다 ")
 	@PostMapping("")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 에러")
+	})
 	public Store register(@RequestBody Store store) {
 
 		storeService.save(store);
