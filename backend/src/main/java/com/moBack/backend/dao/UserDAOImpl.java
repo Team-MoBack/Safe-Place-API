@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User findById(int id) {
+	public User findById(String id) {
 		
 		Session currentSession = entityManager.unwrap(Session.class);
 		User user = currentSession.get(User.class, id);

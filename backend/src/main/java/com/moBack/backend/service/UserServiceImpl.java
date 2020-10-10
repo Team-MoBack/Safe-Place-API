@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User findById(int id) {
+	public User findById(String id) {
 		return userDAO.findById(id);
 	}
 
