@@ -5,55 +5,20 @@ USE `moBack`;
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `users` (
-	`id` varchar(12) NOT NULL,
+CREATE TABLE `user` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+    `email` varchar(50) NOT NULL,
     `password` char(68) NOT NULL,
     `name` varchar(50) NOT NULL,
     `longitude` double(13,10),
-    `latitude` double(13,10)
+    `latitude` double(13,10),
     
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `users`
---
--- NOTE: The passwords are encrypted using BCrypt
---
--- A generation tool is avail at: http://www.luv2code.com/generate-bcrypt-password
---
--- Default passwords here are: fun123
---
 
-INSERT INTO `users` 
+INSERT INTO `user` 
 VALUES 
-('john','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('mary','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('susan','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1);
-
-
---
--- Table structure for table `authorities`
---
-
-DROP TABLE IF EXISTS `authorities`;
-CREATE TABLE `authorities` (
-  `username` varchar(50) NOT NULL,
-  `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
-  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `authorities`
---
-
-INSERT INTO `authorities` 
-VALUES 
-('john','ROLE_EMPLOYEE'),
-('mary','ROLE_EMPLOYEE'),
-('mary','ROLE_MANAGER'),
-('susan','ROLE_EMPLOYEE'),
-('susan','ROLE_ADMIN');
-
-
+(1,'jaegu88@naver.com','1234','kim jaegu',0,0),
+(2,'mary123@kakao.com','1234','mary kim',36.4344,154.12323),
+(3,'susan111@gmail.com','1234','susan lee',44.2232,12.32323);

@@ -14,7 +14,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	String id;
+	int id;
+	
+	@Column(name="email")
+	String email;
 	
 	@Column(name="password")
 	String password;
@@ -32,21 +35,31 @@ public class User {
 		
 	}
 	
-	public User(String id,String password,String name, double longitude, double latitude) {
+	public User(int id,String email,String password,String name, double longitude, double latitude) {
 		super();
 		this.id = id;
+		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
