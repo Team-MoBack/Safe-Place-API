@@ -17,6 +17,10 @@ import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.service.UserService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
@@ -28,11 +32,16 @@ public class UserRestController {
 		this.userService = userService;
 	}
 	
+	@ApiOperation(value = "모든 유저정보를 받아옵니다 ")
 	@GetMapping("")
 	public List<User> findAll(){
 		return userService.findAll();
 	}
 	
+	@ApiOperation(value = "유저 id에 해당하는 유저정보를 받아옵니다 ")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "유저 id", required = true, dataType = "int", paramType = "path")
+	})
 	@GetMapping("/{id}")
 	public User getUser(@PathVariable int id) {
 		User user = userService.findById(id);
@@ -42,6 +51,7 @@ public class UserRestController {
 		return user;
 	}
 	
+	@ApiOperation(value = "아이디 비밀번호를 넘기면 인증여부를 리턴합니다 ")
 	@PostMapping("/login")
 	public User authenticate(@RequestBody User user){
 		List<User> users = userService.findAll();
@@ -55,6 +65,7 @@ public class UserRestController {
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email or password is not matched");
 	}
 	
+	@ApiOperation(value = "유저를 등록합니다 ")
 	@PostMapping("/register")
 	public User register(@RequestBody User user) {
 		
@@ -68,12 +79,19 @@ public class UserRestController {
 		return user;
 	}
 	
+	@ApiOperation(value = "가게위치와 반경을 넘기면 가게주변 유저정보를 받아옵니다 ")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "radius", value = "반경", required = true, dataType = "double", paramType = "path")
+	})
 	@PostMapping("/search/{radius}")
 	public List<User> findUserFromPosition(@PathVariable double radius, @RequestBody Position center){
 		return userService.findUserFromPosition(center, radius);
 	}
 	
-	
+	@ApiOperation(value = "유저 id와 위치를 넘기면 유저의 위치를 갱신합니다 ")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "유저 id", required = true, dataType = "int", paramType = "path")
+	})
 	@PutMapping("/position/{id}")
 	public Position updatePosition(@PathVariable int id, @RequestBody Position pos) {
 		User user = userService.findById(id);
