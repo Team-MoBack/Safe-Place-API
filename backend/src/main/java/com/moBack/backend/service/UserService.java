@@ -1,10 +1,10 @@
-package com.moBack.backend.dao;
+package com.moBack.backend.service;
 
 import java.util.List;
 
 import com.moBack.backend.entity.User;
 
-public interface UserDAO {
+public interface UserService {
 	
 	public List<User> findAll();
 	

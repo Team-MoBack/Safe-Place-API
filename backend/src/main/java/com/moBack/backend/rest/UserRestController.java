@@ -6,23 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.moBack.backend.dao.UserDAO;
 import com.moBack.backend.entity.User;
+import com.moBack.backend.service.UserService;
 
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
 	
-	private UserDAO userDAO;
+	private UserService userService;
 	
 	@Autowired
-	public UserRestController(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	public UserRestController(UserService userService) {
+		this.userService = userService;
 	}
 	
 	@GetMapping("/users")
 	public List<User> findAll(){
-		return userDAO.findAll();
+		return userService.findAll();
 	}
+	
+	//@GetMapping("/users/{id}")
+	
 }
