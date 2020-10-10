@@ -1,13 +1,13 @@
-package com.moBack.springboot.moBack;
+package com.moBack.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MoBackApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MoBackApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }

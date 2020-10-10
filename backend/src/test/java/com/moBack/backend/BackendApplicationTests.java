@@ -1,10 +1,10 @@
-package com.moBack.springboot.moBack;
+package com.moBack.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MoBackApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
