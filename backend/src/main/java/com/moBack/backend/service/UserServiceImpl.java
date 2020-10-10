@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.UserDAO;
+import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
 
 @Service
@@ -38,6 +39,12 @@ public class UserServiceImpl implements UserService {
 		userDAO.save(user);
 	}
 
+	@Override
+	@Transactional
+	public void updatePosition(int id, Position pos) {
+		userDAO.updatePosition(id, pos);	
+	}
+	
 	@Override
 	@Transactional
 	public void deleteById(int id) {

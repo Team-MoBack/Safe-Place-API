@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.service.UserService;
 
@@ -64,5 +66,13 @@ public class UserRestController {
 		}
 		userService.save(user);
 		return user;
+	}
+	
+	@PutMapping("/position/{id}")
+	public Position updatePosition(@PathVariable int id, @RequestBody Position pos) {
+		User user = userService.findById(id);
+		if (user == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"user id is not found");
+		userService.updatePosition(id, pos);
+		return pos;
 	}
 }

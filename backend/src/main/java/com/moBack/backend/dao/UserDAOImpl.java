@@ -10,10 +10,10 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
 
 @Repository
-
 public class UserDAOImpl implements UserDAO{
 	
 	private EntityManager entityManager;
@@ -46,11 +46,21 @@ public class UserDAOImpl implements UserDAO{
 		Session currentSession = entityManager.unwrap(Session.class);
 		currentSession.saveOrUpdate(user);
 	}
+	
+	@Override
+	public void updatePosition(int id, Position pos) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		User user = findById(id);
+		user.setLongitude(pos.getLongitude());
+		user.setLatitude(pos.getLatitude());
+		currentSession.saveOrUpdate(user);
+		
+	}
+
 
 	@Override
 	public void deleteById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 
 	}
-
 }
