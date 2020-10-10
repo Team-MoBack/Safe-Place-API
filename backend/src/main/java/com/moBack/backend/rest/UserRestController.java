@@ -75,4 +75,6 @@ public class UserRestController {
 		userService.updatePosition(id, pos);
 		return pos;
 	}
+	
+	
 }
