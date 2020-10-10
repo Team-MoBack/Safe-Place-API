@@ -68,6 +68,12 @@ public class UserRestController {
 		return user;
 	}
 	
+	@PostMapping("/search/{radius}")
+	public List<User> findUserFromPosition(@PathVariable double radius, @RequestBody Position center){
+		return userService.findUserFromPosition(center, radius);
+	}
+	
+	
 	@PutMapping("/position/{id}")
 	public Position updatePosition(@PathVariable int id, @RequestBody Position pos) {
 		User user = userService.findById(id);

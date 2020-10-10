@@ -1,9 +1,9 @@
 package com.moBack.backend.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -38,6 +38,19 @@ public class UserDAOImpl implements UserDAO{
 		User user = currentSession.get(User.class, id);
 		
 		return user;
+	}
+	
+	@Override
+	public List<User> findUserFromPosition(Position center,double radius){
+		List<User> users = findAll();
+		List<User> filteredUsers = new ArrayList<>();
+		for (User user : users) {
+			Position userPos = new Position(user.getLongitude(),user.getLatitude());
+			if (userPos.distance(center,"K")/1000 < radius) {
+				filteredUsers.add(user);
+			}
+		}
+		return filteredUsers;
 	}
 	
 	@Override

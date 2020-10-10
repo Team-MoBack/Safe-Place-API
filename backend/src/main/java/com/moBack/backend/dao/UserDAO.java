@@ -17,5 +17,7 @@ public interface UserDAO {
 	
 	public void deleteById(int id);
 
+	public List<User> findUserFromPosition(Position center, double radius);
+
 	
 }
