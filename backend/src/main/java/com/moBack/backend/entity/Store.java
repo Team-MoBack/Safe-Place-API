@@ -14,10 +14,13 @@ public class Store {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	String storeName;
+	int id;
 	
-	@Column(name="owner_name")
-	String ownerName;
+	@Column(name="name")
+	String name;
+	
+	@Column(name="owner")
+	String owner;
 	
 	@Column(name="category")
 	String category;
@@ -32,28 +35,29 @@ public class Store {
 		
 	}
 	
-	public Store(String storeName, String ownerName, String category, double latitude, double longitude) {
-		this.storeName = storeName;
-		this.ownerName = ownerName;
+	public Store(int id,String name, String ownerName, String category, double latitude, double longitude) {
+		this.id = id;
+		this.name = name;
+		this.owner = ownerName;
 		this.category = category;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
 	public String getStoreName() {
-		return storeName;
+		return name;
 	}
 
-	public void setStoreName(String storeName) {
-		this.storeName = storeName;
+	public void setStoreName(String name) {
+		this.name = name;
 	}
 
-	public String getOwnerName() {
-		return ownerName;
+	public String getOwner() {
+		return owner;
 	}
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 	public String getCategory() {
@@ -82,8 +86,8 @@ public class Store {
 
 	@Override
 	public String toString() {
-		return "Store [storeName=" + storeName + ", ownerName=" + ownerName + ", category=" + category + ", latitude="
-				+ latitude + ", longitude=" + longitude + "]";
+		return "Store [id=" + id + ", name=" + name + ", ownerName=" + owner + ", category=" + category
+				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
 }
