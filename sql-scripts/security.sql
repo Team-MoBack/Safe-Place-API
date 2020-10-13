@@ -50,9 +50,9 @@ CREATE TABLE `authorities` (
 
 INSERT INTO `authorities` 
 VALUES 
-('john','ROLE_EMPLOYEE'),
-('mary','ROLE_EMPLOYEE'),
-('mary','ROLE_MANAGER'),
+('john','USER'),
+('mary','USER'),
+('KIM','ROLE_MANAGER'),
 ('susan','ROLE_EMPLOYEE'),
 ('susan','ROLE_ADMIN');
 

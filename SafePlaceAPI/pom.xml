@@ -41,21 +41,20 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
+
 
 		<!-- Swagger2 -->
 		<dependency>
@@ -69,6 +68,7 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.4.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

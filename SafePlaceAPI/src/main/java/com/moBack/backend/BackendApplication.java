@@ -10,10 +10,7 @@ import com.moBack.backend.config.SecurityConfig;
 @SpringBootApplication
 public class BackendApplication {
 	
-	@Bean
-	public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter() {
-		return new SecurityConfig();
-	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
