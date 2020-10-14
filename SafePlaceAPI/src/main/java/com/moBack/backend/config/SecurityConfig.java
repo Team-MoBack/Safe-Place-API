@@ -12,20 +12,25 @@ import com.moBack.backend.service.TestUserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
      @Autowired TestUserService userService;
-     
+ 
      @Override
      protected void configure(HttpSecurity http) throws Exception {
           http
                .csrf().disable()
                .authorizeRequests()
+                    .antMatchers("/user").hasAuthority("USER")
+                    .antMatchers("/admin").hasAuthority("ADMIN")
                     .anyRequest().authenticated()
                     .and()
-               .formLogin();
+               .formLogin()
+                    .and()
+               .logout()
+               ;
      }
-
 
      @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-          auth.userDetailsService(userService);
+          auth.userDetailsService(userService)
+               .passwordEncoder(userService.passwordEncoder());
      }
 }

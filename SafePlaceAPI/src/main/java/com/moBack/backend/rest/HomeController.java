@@ -31,4 +31,14 @@ public class HomeController {
 
 		return home;
 	}
+	
+    @RequestMapping("/admin")
+    public String admin() {
+         return "This is admin page";
+    }
+   
+    @RequestMapping("/user")
+    public String user() {
+         return "this is user page";
+    }
 }
