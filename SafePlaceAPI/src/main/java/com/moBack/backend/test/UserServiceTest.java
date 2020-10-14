@@ -37,7 +37,7 @@ public class UserServiceTest {
           user1.setName("USER1");
           user1.setCredentialsNonExpired(true);
           user1.setEnabled(true);
-          user1.setAuthorities(AuthorityUtils.createAuthorityList("USER"));
+          user1.setAuthorities(AuthorityUtils.createAuthorityList("USER","ADMIN"));
      }
     
      @Test
