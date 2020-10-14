@@ -32,11 +32,7 @@ public class TestUserServiceImpl implements TestUserService {
 	}
 	
 	public Collection<GrantedAuthority> getAuthorities(String username) {
-		List<String> string_authorities = userMapper.readAuthority(username);
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (String authority : string_authorities) {
-			authorities.add(new SimpleGrantedAuthority(authority));
-		}
+		Collection<GrantedAuthority> authorities = userMapper.readAuthority(username);
 		return authorities;
 	}
 

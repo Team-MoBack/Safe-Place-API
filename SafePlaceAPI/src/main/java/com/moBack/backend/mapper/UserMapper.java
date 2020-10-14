@@ -10,7 +10,7 @@ import com.moBack.backend.entity.TestUser;
 @Mapper
 public interface UserMapper {
 	public TestUser readUser(String username);
-	public List<String> readAuthority(String username);
+	public List<GrantedAuthority> readAuthority(String username);
 	public void createUser(TestUser user);
 	public void createAuthority(TestUser user);
 	public void deleteUser(String username);
