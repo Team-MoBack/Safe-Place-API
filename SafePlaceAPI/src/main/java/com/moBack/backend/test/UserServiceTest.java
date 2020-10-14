@@ -1,5 +1,9 @@
 package com.moBack.backend.test;
 
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -42,20 +47,20 @@ public class UserServiceTest {
     
      @Test
      public void createUserTest() {
-    	 userService.deleteUser(user1.getUsername());
+          userService.deleteUser(user1.getUsername());
           userService.createUser(user1);
           TestUser user = userService.readUser(user1.getUsername());
-         // assertThat(user.getUsername(),user1.getUsername()));
+          assertThat(user.getUsername(), is(user1.getUsername()));
          
           PasswordEncoder passwordEncoder = userService.passwordEncoder();
-        //  assertThat(passwordEncoder.matches("pass1", user.getPassword()), is(true));
+          assertThat(passwordEncoder.matches("pass1", user.getPassword()), is(true));
 
           Collection<? extends GrantedAuthority> authorities1 = user1.getAuthorities();
           Iterator<? extends GrantedAuthority> it = authorities1.iterator();
           Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
           while (it.hasNext()) {
                GrantedAuthority authority = it.next();
-             //  assertThat(authorities, hasItem(new SimpleGrantedAuthority(authority.getAuthority())));
+               assertThat(authorities, hasItem(new SimpleGrantedAuthority(authority.getAuthority())));
           }
      }
 }
