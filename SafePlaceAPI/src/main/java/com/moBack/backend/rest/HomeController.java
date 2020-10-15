@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moBack.backend.entity.Home;
+import com.moBack.backend.util.Home;
 
 @RestController
 public class HomeController {

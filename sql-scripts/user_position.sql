@@ -1,6 +1,6 @@
 USE `moback`;
-DROP TABLE IF EXISTS `USER_POSITION`;
-CREATE TABLE `USER_POSITION` (
+DROP TABLE IF EXISTS `user_position`;
+CREATE TABLE `user_position` (
 	`id` int NOT NULL,
     `longitude` double DEFAULT NULL,
     `latitude` double DEFAULT NULL,

@@ -9,8 +9,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.Store;
+import com.moBack.backend.util.Position;
 
 @Repository
 public class StoreDAOImpl implements StoreDAO{

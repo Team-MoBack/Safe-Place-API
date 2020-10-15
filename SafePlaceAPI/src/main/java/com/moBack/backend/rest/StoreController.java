@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
+import com.moBack.backend.util.Position;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -24,12 +24,12 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/stores")
-public class StoreRestController {
+public class StoreController {
 	
 	private StoreService storeService;
 
 	@Autowired
-	public StoreRestController(StoreService storeService) {
+	public StoreController(StoreService storeService) {
 		this.storeService = storeService;
 	}
 	

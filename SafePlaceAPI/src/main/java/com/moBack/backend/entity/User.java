@@ -20,10 +20,10 @@ public class User {
 	int id;
 	
 	@Column(name="first_name")
-	String first_name;
+	String firstName;
 	
 	@Column(name="last_name")
-	String last_name;
+	String lastName;
 	
 	@Column(name="email")
 	String email;
@@ -32,13 +32,29 @@ public class User {
 	String password;
 
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="instructor_detail_id")
+	@JoinColumn(name="user_position_id")
 	private UserPosition userPosition;
 	
 	public User() {
 		
 	}
-
+	
+	public User(int id, String firstName, String lastName, String email, String password, UserPosition userPosition) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.userPosition = userPosition;
+	}
+	
+	public User(String firstName, String lastName, String email, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -48,26 +64,21 @@ public class User {
 		this.id = id;
 	}
 
-
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -95,12 +106,16 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+    public static User createMember(String firstName, String lastName, String email, String password) {
+        return new User(firstName,lastName,email,password);
+    }
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", userPosition=" + userPosition + "]";
 	}
 
-
+    
 }

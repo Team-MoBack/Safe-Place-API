@@ -10,9 +10,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
+import com.moBack.backend.util.Position;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public List<User> findAllUser() {
+	public List<User> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Query<User> theQuery = currentSession.createQuery("from User",User.class);
 		List<User> users = theQuery.getResultList();
@@ -47,7 +47,8 @@ public class UserDAOImpl implements UserDAO{
 		List<User> users = findAll();
 		List<User> filteredUsers = new ArrayList<>();
 		for (User user : users) {
-			Position userPos = new Position(user.getLongitude(),user.getLatitude());
+			UserPosition position = user.getUserPosition();
+			Position userPos = new Position(position.getLongitude(),position.getLatitude());
 			if (userPos.distance(center,"K")/1000 < radius) {
 				filteredUsers.add(user);
 			}
@@ -66,12 +67,11 @@ public class UserDAOImpl implements UserDAO{
 	public void updatePosition(int id, Position pos) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		User user = findById(id);
-		user.setLongitude(pos.getLongitude());
-		user.setLatitude(pos.getLatitude());
+		UserPosition userPosition = user.getUserPosition();
+		userPosition.setLongitude(pos.getLongitude());
+		userPosition.setLatitude(pos.getLatitude());
 		currentSession.saveOrUpdate(user);
-		
 	}
-
 
 	@Override
 	public void deleteById(int id) {

@@ -5,8 +5,9 @@ CREATE TABLE `user` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `first_name` varchar(50) NOT NULL,
     `last_name` varchar(50) NOT NULL,
-    `email` varchar(50) NOT NULL,
+    `email` varchar(50) UNIQUE NOT NULL,
     `password` varchar(50) NOT NULL,
+    `user_position_id` int,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
