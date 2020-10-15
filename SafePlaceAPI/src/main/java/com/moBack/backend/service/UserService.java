@@ -4,10 +4,13 @@ import java.util.List;
 
 import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
+import com.moBack.backend.entity.UserPosition;
 
 public interface UserService {
 	
-	public List<User> findAll();
+	public List<User> findAllUser();
+	
+	public List<UserPosition> findAllUserPosition();
 	
 	public User findById(int id);
 	

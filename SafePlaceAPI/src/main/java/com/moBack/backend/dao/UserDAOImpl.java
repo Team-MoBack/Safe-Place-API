@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.moBack.backend.entity.Position;
 import com.moBack.backend.entity.User;
+import com.moBack.backend.entity.UserPosition;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -24,12 +25,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public List<User> findAll() {
+	public List<User> findAllUser() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Query<User> theQuery = currentSession.createQuery("from User",User.class);
 		List<User> users = theQuery.getResultList();
 		return users;
 	}
+	
 
 	@Override
 	public User findById(int id) {
@@ -76,4 +78,5 @@ public class UserDAOImpl implements UserDAO{
 		Session currentSession = entityManager.unwrap(Session.class);
 
 	}
+
 }
