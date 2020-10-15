@@ -6,7 +6,7 @@ CREATE TABLE `user` (
     `first_name` varchar(50) NOT NULL,
     `last_name` varchar(50) NOT NULL,
     `email` varchar(50) UNIQUE NOT NULL,
-    `password` varchar(50) NOT NULL,
+    `password` varchar(60) NOT NULL,
     `user_position_id` int,
 
   PRIMARY KEY (`id`)
