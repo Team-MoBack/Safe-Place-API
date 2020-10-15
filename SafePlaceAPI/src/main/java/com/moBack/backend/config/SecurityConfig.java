@@ -9,9 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.session.web.http.HeaderHttpSessionStrategy;
-import org.springframework.session.web.http.HttpSessionStrategy;
-
 import com.moBack.backend.service.TestUserService;
 
 @Configuration
@@ -49,9 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      public AuthenticationManager authenticationManagerBean() throws Exception {
           return super.authenticationManagerBean();
      }
-    
-     @Bean
-     public HttpSessionStrategy httpSessionStrategy() {
-               return new HeaderHttpSessionStrategy();
-     }
+ 
+ 
 }
