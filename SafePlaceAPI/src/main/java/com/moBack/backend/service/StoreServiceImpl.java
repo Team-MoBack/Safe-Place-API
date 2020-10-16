@@ -35,8 +35,8 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	@Transactional
-	public void save(Store store) {
-		storeDAO.save(store);
+	public Store save(Store store) {
+		return storeDAO.save(store);
 	}
 
 	@Override

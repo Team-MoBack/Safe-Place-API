@@ -35,20 +35,27 @@ public class Store {
 		
 	}
 	
-	public Store(int id,String name, String ownerName, String category, double latitude, double longitude) {
-		this.id = id;
+	public Store(String name, String ownerName, String category, double latitude, double longitude) {
 		this.name = name;
 		this.owner = ownerName;
 		this.category = category;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
-	public String getStoreName() {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	public void setStoreName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

@@ -11,7 +11,7 @@ public interface StoreDAO {
 
 	public Store findById(int id);
 
-	public void save(Store store);
+	public Store save(Store store);
 
 	public void deleteById(int id);
 

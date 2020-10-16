@@ -14,8 +14,10 @@ import com.moBack.backend.entity.User;
 import com.moBack.backend.util.UserRepository;
 
 @RunWith(SpringRunner.class)
+@DataJpaTest
 @ActiveProfiles("test")
-public class UserJpaTest {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class StoreJpaTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -34,6 +36,4 @@ public class UserJpaTest {
         final User foundUser = userRepository.findByEmail(savedUser.getEmail()).get();
         assertNotNull(foundUser.getId());
     }
-    
-    
 }

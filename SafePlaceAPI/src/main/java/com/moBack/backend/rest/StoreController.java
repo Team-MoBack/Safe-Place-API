@@ -83,8 +83,8 @@ public class StoreController {
 	})
 	public Store register(@RequestBody Store store) {
 
-		storeService.save(store);
-		return store;
+		Store newStore = storeService.save(store);
+		return newStore;
 	}
 
 }
