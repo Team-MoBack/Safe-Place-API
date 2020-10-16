@@ -11,7 +11,7 @@ public interface StoreService {
 
 	public Store findById(int id);
 
-	public Store save(Store store);
+	public void save(Store store);
 	
 	public List<Store> findStoreFromPosition(Position center, double radius);
 	

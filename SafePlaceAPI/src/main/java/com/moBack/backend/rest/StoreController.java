@@ -81,10 +81,8 @@ public class StoreController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
-	public Store register(@RequestBody Store store) {
-
-		Store newStore = storeService.save(store);
-		return newStore;
+	public void register(@RequestBody Store store) {
+		storeService.save(store);
 	}
 
 }

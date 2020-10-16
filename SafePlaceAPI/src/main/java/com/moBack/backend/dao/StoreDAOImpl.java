@@ -55,12 +55,9 @@ public class StoreDAOImpl implements StoreDAO{
 	}
 	
 	@Override
-	public Store save(Store store) {
-		
-		System.out.println(store);
+	public void save(Store store) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		currentSession.saveOrUpdate(store);
-		return store;
 	}
 	
 	@Override

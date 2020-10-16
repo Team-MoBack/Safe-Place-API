@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void save(User user) {
-		System.out.println(user);
 		userDAO.save(user);
 	}
 

@@ -41,22 +41,22 @@ public class StoreServiceTest {
 	@Test
 	public void findByIdTest() {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
-		Store newStore = storeService.save(store1);
-		assertNotNull(storeService.findById(newStore.getId()));
+		storeService.save(store1);
+		assertNotNull(storeService.findById(store1.getId()));
 	}
 	
 	@Test
 	public void saveTest() {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
-		Store newStore = storeService.save(store1);
-		assertNotNull(newStore);
+		storeService.save(store1);
+		assertNotNull(store1);
 	}
 	
 	@Test
 	public void deleteByIdTest() {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
-		Store newStore = storeService.save(store1);
-		storeService.deleteById(newStore.getId());
+		storeService.save(store1);
+		storeService.deleteById(store1.getId());
 		assertNull(storeService.findById(store1.getId()));
 	}
 	
