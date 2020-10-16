@@ -64,7 +64,10 @@ public class StoreDAOImpl implements StoreDAO{
 	
 	@Override
 	public void deleteById(int id) {
-		
+		Session currentSession = entityManager.unwrap(Session.class);
+		Store store = currentSession.load(Store.class, id);
+		if (store != null)
+			currentSession.delete(store);
 	}
 	
 }

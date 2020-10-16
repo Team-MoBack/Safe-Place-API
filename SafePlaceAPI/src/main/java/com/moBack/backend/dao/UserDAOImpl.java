@@ -76,7 +76,9 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void deleteById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-
+		User user = currentSession.load(User.class, id);
+		if (user != null)
+			currentSession.delete(user);
 	}
 
 }

@@ -47,6 +47,12 @@ public class UserController {
 		return userService.findAll();
 	}
 	
+	@ApiOperation(value = "유저를 등록합니다 ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 400, message = "잘못된 접근"),
+		@ApiResponse(code = 500, message = "서버 에러")
+	})
 	@PostMapping("/register")
     public String saveUser(@RequestBody UserDto userDto) {
 		System.out.println(">>> "+userDto);
@@ -91,26 +97,6 @@ public class UserController {
 		}
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email or password is not matched");
 	}
-	
-//	@ApiOperation(value = "유저를 등록합니다 ")
-//	@PostMapping("/register")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//		@ApiResponse(code = 400, message = "잘못된 접근"),
-//		@ApiResponse(code = 500, message = "서버 에러")
-//	})
-//	public User register(@RequestBody User user) {
-//		
-//		List<User> users = userService.findAll();
-//		for (User temp : users) {
-//			if (temp.getEmail().equals(user.getEmail())) {
-//				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "user id is duplicated - " + user.getId());
-//			}
-//		}
-//		userService.save(user);
-//		return user;
-//	}
-	
 
 	@ApiOperation(value = "가게위치와 반경을 넘기면 가게주변 유저정보를 받아옵니다 ")
 	@ApiImplicitParams({
