@@ -10,9 +10,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
-import com.moBack.backend.util.Position;
 
 @Repository
 public class UserDAOImpl implements UserDAO{

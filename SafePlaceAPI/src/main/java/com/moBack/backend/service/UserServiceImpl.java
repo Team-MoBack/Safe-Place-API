@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.UserRepository;
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
-import com.moBack.backend.util.Position;
 
 @Service
 public class UserServiceImpl implements UserService {

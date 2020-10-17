@@ -1,4 +1,4 @@
-package com.moBack.backend.util;
+package com.moBack.backend.dto;
 
 public class Position {
 

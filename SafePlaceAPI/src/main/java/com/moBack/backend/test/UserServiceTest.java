@@ -15,10 +15,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.moBack.backend.BackendApplication;
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
-import com.moBack.backend.util.Position;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

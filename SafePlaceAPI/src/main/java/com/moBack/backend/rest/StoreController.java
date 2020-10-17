@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
-import com.moBack.backend.util.Position;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

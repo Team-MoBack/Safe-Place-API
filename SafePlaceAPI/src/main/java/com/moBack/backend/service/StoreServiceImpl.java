@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.StoreRepository;
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.Store;
-import com.moBack.backend.util.Position;
 
 @Service
 public class StoreServiceImpl implements StoreService {

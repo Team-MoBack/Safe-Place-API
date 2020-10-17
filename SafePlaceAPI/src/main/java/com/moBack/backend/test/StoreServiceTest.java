@@ -1,7 +1,5 @@
 package com.moBack.backend.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -17,9 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.moBack.backend.BackendApplication;
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
-import com.moBack.backend.util.Position;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

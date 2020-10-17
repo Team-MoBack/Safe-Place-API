@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.moBack.backend.entity.User;
-import com.moBack.backend.service.UserService;
-import com.moBack.backend.util.Position;
+import com.moBack.backend.dto.Position;
 import com.moBack.backend.dto.UserDto;
+import com.moBack.backend.entity.User;
+import com.moBack.backend.entity.UserPosition;
+import com.moBack.backend.service.UserService;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -54,10 +56,10 @@ public class UserController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PostMapping("/register")
-    public String saveUser(@RequestBody UserDto userDto) {
+    public User saveUser(@RequestBody UserDto userDto) {
 		System.out.println(">>> "+userDto);
-        userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
-        return "success";
+        User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
+        return newUser;
     }
 	
 	
@@ -78,25 +80,25 @@ public class UserController {
 		}
 		return user;
 	}
-	
-	@ApiOperation(value = "아이디 비밀번호를 넘기면 인증여부를 리턴합니다 ")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "성공"),
-		@ApiResponse(code = 400, message = "잘못된 접근"),
-		@ApiResponse(code = 500, message = "서버 에러")
-	})
-	@PostMapping("/login")
-	public User authenticate(@RequestBody User user){
-		List<User> users = userService.findAll();
-		String email = user.getEmail();
-		String pw = user.getPassword();
-		for (User temp : users) {
-			if (email.equals(temp.getEmail()) && pw.equals(temp.getPassword())) {
-				return user;
-			}
-		}
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email or password is not matched");
-	}
+//	
+//	@ApiOperation(value = "아이디 비밀번호를 넘기면 인증여부를 리턴합니다 ")
+//	@ApiResponses({
+//		@ApiResponse(code = 200, message = "성공"),
+//		@ApiResponse(code = 400, message = "잘못된 접근"),
+//		@ApiResponse(code = 500, message = "서버 에러")
+//	})
+//	@PostMapping("/login")
+//	public User authenticate(@RequestBody User user){
+//		List<User> users = userService.findAll();
+//		String email = user.getEmail();
+//		String pw = user.getPassword();
+//		for (User temp : users) {
+//			if (email.equals(temp.getEmail()) && pw.equals(temp.getPassword())) {
+//				return user;
+//			}
+//		}
+//		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email or password is not matched");
+//	}
 
 	@ApiOperation(value = "가게위치와 반경을 넘기면 가게주변 유저정보를 받아옵니다 ")
 	@ApiImplicitParams({
@@ -121,11 +123,11 @@ public class UserController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PutMapping("/position/{id}")
-	public Position updatePosition(@PathVariable int id, @RequestBody Position pos) {
+	public UserPosition updatePosition(@PathVariable int id, @RequestBody Position pos) {
 		User user = userService.findById(id);
 		if (user == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"user id is not found");
 		userService.updatePosition(id, pos);
-		return pos;
+		return new UserPosition(id,pos.getLongitude(),pos.getLatitude());
 	}
 	
 	
