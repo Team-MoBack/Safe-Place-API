@@ -2,18 +2,18 @@ package com.moBack.backend.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.moBack.backend.dao.UserRepository;
 import com.moBack.backend.entity.User;
 
-@RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class UserJpaTest {
+@Transactional
+public class UserJpaTest extends AbstractTest {
 
     @Autowired
     private UserRepository userRepository;

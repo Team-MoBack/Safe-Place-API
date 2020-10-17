@@ -66,24 +66,7 @@ public class UserRestControllerTest extends AbstractTest {
 		System.out.println(savedUser);
 		assertEquals(newUser.getEmail(),savedUser.getEmail());
 	}
-//	
-//	@Test
-//	public void authenticateTest() throws Exception {
-//		userRepository.save(new User("jaegu","kim","jaegu88@gmail.com","1234"));
-//		User requestUser = new User();
-//		String uri = "/api/users/login";
-//		requestUser.setEmail("jaegu88@gmail.com");
-//		requestUser.setPassword("1234");
-//		String json = super.mapToJson(requestUser);
-//		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-//				.contentType(MediaType.APPLICATION_JSON_VALUE).content(json)).andReturn();
-//		int status = mvcResult.getResponse().getStatus();
-//		assertEquals(200,status);
-//		String content = mvcResult.getResponse().getContentAsString();
-//		System.out.println(content);
-//		assertTrue(content.contains("token"));
-//	}
-	
+
 	@Test
 	public void updatePositionTest() throws Exception {
 		User user1 = userRepository.save(new User("jaegu","kim","jaegu88@gmail.com","1234"));

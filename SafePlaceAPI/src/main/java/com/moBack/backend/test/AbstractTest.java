@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moBack.backend.BackendApplication;
+import com.moBack.backend.config.SecurityConfig;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

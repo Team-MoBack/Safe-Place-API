@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findAll();
 		List<User> filteredUsers = new ArrayList<>();
 		for (User user : users) {
+			System.out.println(user);
 			UserPosition position = user.getUserPosition();
 			Position userPos = new Position(position.getLongitude(),position.getLatitude());
 			if (userPos.distance(center,"K")/1000 < radius) {
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User save(User user) {
+		user.setUserPosition(new UserPosition(0,0));
 		return userRepository.save(user);
 	}
 

@@ -70,16 +70,13 @@ public class UserServiceTest {
 	@Test
 	public void findUserFromPositionTest() {
 		User user1 = userService.save(new User("jaegu","kim","jaegu88@gmail.com","1234"));
-		user1.setUserPosition(new UserPosition(35.818689,128.529462));
-		userService.save(user1);
+		userService.updatePosition(user1.getId(),new Position(35.818689,128.529462));
 		
 		User user2 = userService.save(new User("junhyun","park","junhyun@gmail.com","1234"));
-		user2.setUserPosition(new UserPosition(35.818689,128.529462));
-		userService.save(user2);
+		userService.updatePosition(user2.getId(),new Position(35.817925,128.533626));
 
 		User user3 = userService.save(new User("kildong","hong","kildong@gmail.com","1234"));
-		user3.setUserPosition(new UserPosition(35.818689,128.529462));
-		userService.save(user3);
+		userService.updatePosition(user3.getId(),new Position(35.816207,128.530512));
 		
 		List<User> nearUsers = userService.findUserFromPosition(new Position(35.814346,128.524734), 1);
 		assertTrue(nearUsers.size() >= 3);
