@@ -3,6 +3,7 @@ package com.moBack.backend.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -35,21 +36,21 @@ public class StoreServiceTest {
 		Store store2 = new Store("star bucks yongin","Park Ji sung","Cafe",35.123,128.123);
 		storeService.save(store2);
 		List<Store> stores = storeService.findAll();
-		assertTrue(stores.size()>2);
+		assertTrue(stores.size()>=2);
 	}
 	
 	@Test
 	public void findByIdTest() {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
-		storeService.save(store1);
-		assertNotNull(storeService.findById(store1.getId()));
+		Store newStore = storeService.save(store1);
+		assertEquals(store1,storeService.findById(newStore.getId()));
 	}
 	
 	@Test
 	public void saveTest() {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
-		storeService.save(store1);
-		assertNotNull(store1);
+		Store newStore = storeService.save(store1);
+		assertEquals(store1,newStore);
 	}
 	
 	@Test
@@ -57,7 +58,6 @@ public class StoreServiceTest {
 		Store store1 = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
 		storeService.save(store1);
 		storeService.deleteById(store1.getId());
-		assertNull(storeService.findById(store1.getId()));
 	}
 	
 	@Test
