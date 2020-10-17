@@ -26,9 +26,7 @@ public class UserPosition {
 		
 	}
 
-	public UserPosition(int id, double longitude, double latitude) {
-		super();
-		this.id = id;
+	public UserPosition(double longitude, double latitude) {
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}

@@ -13,9 +13,9 @@ public interface UserService {
 	
 	public List<User> findUserFromPosition(Position center, double radius);
 	
-	public void save(User user);
+	public User save(User user);
 	
-	public void updatePosition(int id, Position pos);
+	public User updatePosition(int id, Position pos);
 	
 	public void deleteById(int id);
 

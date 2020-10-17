@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.moBack.backend.dao.UserRepository;
 import com.moBack.backend.util.Role;
-import com.moBack.backend.util.UserRepository;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {

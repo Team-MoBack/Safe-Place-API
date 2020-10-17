@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.moBack.backend.dao.UserRepository;
 import com.moBack.backend.entity.User;
-import com.moBack.backend.util.UserRepository;
 
 @Component
 public class JwtAuthenticationProvider implements AuthenticationProvider {

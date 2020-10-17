@@ -10,8 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.moBack.backend.dao.UserRepository;
 import com.moBack.backend.entity.User;
-import com.moBack.backend.util.UserRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
