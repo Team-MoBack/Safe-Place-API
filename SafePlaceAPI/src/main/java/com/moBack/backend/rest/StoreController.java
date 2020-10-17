@@ -76,13 +76,13 @@ public class StoreController {
 	}
 	
 	@ApiOperation(value = "가게를 등록합니다 ")
-	@PostMapping("")
+	@PostMapping("/register")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
-	public void register(@RequestBody Store store) {
-		storeService.save(store);
+	public Store register(@RequestBody Store store) {
+		return storeService.save(store);
 	}
 
 }

@@ -57,7 +57,6 @@ public class UserController {
 	})
 	@PostMapping("/register")
     public User saveUser(@RequestBody UserDto userDto) {
-		System.out.println(">>> "+userDto);
         User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
         return newUser;
     }
