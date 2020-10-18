@@ -28,7 +28,7 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailService;
     
-	@ApiOperation(value = "로그인 ")
+	@ApiOperation(value = "로그인 성공시 token을 리턴합니다 ", response=JwtResponse.class)
     @ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
