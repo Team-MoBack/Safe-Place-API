@@ -62,5 +62,6 @@ will be updated soon
 * Spring Security
 * Swagger2 - 2.9.2
 * MySQL - 5.1.45
+* JUnit5
 * JAVA - 11
 
