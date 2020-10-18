@@ -80,25 +80,6 @@ public class UserController {
 		}
 		return user;
 	}
-//	
-//	@ApiOperation(value = "아이디 비밀번호를 넘기면 인증여부를 리턴합니다 ")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//		@ApiResponse(code = 400, message = "잘못된 접근"),
-//		@ApiResponse(code = 500, message = "서버 에러")
-//	})
-//	@PostMapping("/login")
-//	public User authenticate(@RequestBody User user){
-//		List<User> users = userService.findAll();
-//		String email = user.getEmail();
-//		String pw = user.getPassword();
-//		for (User temp : users) {
-//			if (email.equals(temp.getEmail()) && pw.equals(temp.getPassword())) {
-//				return user;
-//			}
-//		}
-//		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email or password is not matched");
-//	}
 
 	@ApiOperation(value = "가게위치와 반경을 넘기면 가게주변 유저정보를 받아옵니다 ")
 	@ApiImplicitParams({
