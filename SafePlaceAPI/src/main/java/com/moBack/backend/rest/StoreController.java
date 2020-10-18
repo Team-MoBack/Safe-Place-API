@@ -33,6 +33,7 @@ public class StoreController {
 		this.storeService = storeService;
 	}
 	
+
 	@ApiOperation(value = "전체 스토어 정보를 받아옵니다 ")
 	@GetMapping("")
 	@ApiResponses({

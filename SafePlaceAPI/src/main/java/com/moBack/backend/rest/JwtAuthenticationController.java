@@ -13,6 +13,9 @@ import com.moBack.backend.entity.User;
 import com.moBack.backend.jwt.JwtTokenUtil;
 import com.moBack.backend.service.JwtUserDetailsService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -22,8 +25,9 @@ public class JwtAuthenticationController {
 
     @Autowired
     private JwtUserDetailsService userDetailService;
-
-    @PostMapping("/login")
+    
+    @ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
+    @PostMapping("api/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         final User user = userDetailService.authenticateByEmailAndPassword
                 (authenticationRequest.getEmail(), authenticationRequest.getPassword());

@@ -55,6 +55,7 @@ public class UserController {
 		@ApiResponse(code = 400, message = "잘못된 접근"),
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
+	@ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
 	@PostMapping("/register")
     public User saveUser(@RequestBody UserDto userDto) {
         User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
