@@ -33,7 +33,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
-
+	
+	private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/login",
+            "/api/users/register"
+    };
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -48,9 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http
 		.csrf().disable()
-		.authorizeRequests().antMatchers("/login", "/api/users/register").permitAll()
+		.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.exceptionHandling()
