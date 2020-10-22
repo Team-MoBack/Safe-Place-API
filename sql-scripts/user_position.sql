@@ -1,4 +1,4 @@
-USE `moback`;
+USE `moBack`;
 DROP TABLE IF EXISTS `user_position`;
 CREATE TABLE `user_position` (
 	`id` int NOT NULL AUTO_INCREMENT,

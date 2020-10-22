@@ -2,7 +2,7 @@
 FROM java:8
 
 # Add Author info
-LABEL maintainer="f.softwareengineer@gmail.com"
+LABEL maintainer="kimwithglasses@kakao.com"
 
 # Add a volume to /tmp
 VOLUME /tmp
@@ -17,4 +17,4 @@ ARG JAR_FILE=target/SafePlaceAPI-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} SafePlaceAPI-0.0.1-SNAPSHOT.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/to-do-springboot.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/SafePlaceAPI-0.0.1-SNAPSHOT.jar"]
