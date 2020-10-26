@@ -12,7 +12,9 @@ services:
           - 3305:3306        
 
     safe-place-api:
-        build: .
+        container_name: safe-place-api
+        image: kimwithglasses/safe-place-api:0.0.1
+        #build: .
         ports:
           - 80:8080
         depends_on:
