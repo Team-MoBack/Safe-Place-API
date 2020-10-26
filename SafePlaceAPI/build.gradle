@@ -6,10 +6,8 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'org.springframework.boot' version '2.3.4.RELEASE'
-
 }
 
-apply plugin: 'io.spring.dependency-management'
 
 repositories {
     mavenLocal()
