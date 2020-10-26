@@ -3,3 +3,10 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/moBack?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     username: root
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR
