@@ -9,6 +9,7 @@ services:
     safe-place-api:
         container_name: safe-place-api
         image: kimwithglasses/safe-place-api:0.0.1
+        restart: on-failure:10
         #build: .
         ports:
           - 80:8080
