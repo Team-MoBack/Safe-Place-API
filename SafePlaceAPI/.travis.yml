@@ -1,0 +1,7 @@
+dist: trusty
+
+jobs:
+  include:
+    - stage: test docker-compose.yml
+      script:
+      - docker-compose up
