@@ -1,4 +1,6 @@
 # Safe Place : Make your local society better
+[![Build Status](https://travis-ci.com/Team-MoBack/Safe-Place-API.svg?branch=main)](https://travis-ci.com/Team-MoBack/Safe-Place-API)  
+
 *2020 Junction x Seoul - Team 'Moback'*  
 
 <img src=./images/junction.png width="300">  
