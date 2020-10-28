@@ -7,6 +7,9 @@ env:
 
 jobs:
   include:
+    - stage: login to dockerhub
+      script: 
+      - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
     - stage: build safe-place images and push to dockerhub repository
       script:
       - docker build --tag kimwithglasses/safe-place-db:0.0.1 . && docker push kimwithglasses/safe-place-db
