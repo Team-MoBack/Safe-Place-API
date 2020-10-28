@@ -13,7 +13,7 @@ env:
 #      . && docker push kimwithglasses/safe-place-api
 deploy:
    provider: script
-   script: bash docker-push.sh
+   script: bash docker_push.sh
    skip_cleanup: true
    on:
       repo: kimwithlglasses/safe-place-api
