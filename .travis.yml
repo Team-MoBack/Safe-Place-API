@@ -3,14 +3,11 @@ env:
   global:
   - DOCKER_USER=kimwithglasses@kakao.com
   - secure: Vjp3u+NjKL+6eQ41ucuwP18VbSGZTNgXep3f9NaXHm1+pcEPWox71Kiug2Br9qE8NuezK7paeCY4ObbE5muV1iHW1Q09u+zWtssd37o1JPfxodeT3OMWGrBMGCTdGGmFwjJhLZOgWY3HYkkakWetkCkaL/UVxo2GWxOOxnZuZb9ow7VyCJO9M9kkcH9RNcFxQZ6IHftmh8hN+Cd5GzVHTwGlsg2b58Fx6Mr7GzRauM/5sIjKJO2COV9L5IgkDrJ/KAnu8bXuVqvF7pMMz985o/k+KbTvw3eu4fRfgXxIiG2M6Ld4kbD3V0EfAvJjaCRppUVTyVbMA19BQ6R104ijOQUQVYZTukUibSFWA2R9KiW8CTf5pJCAB+FvIiGNpv9k56uGKdkJvbDizotC8Ww/Tfeavc2fkRzF7sANebpanAJ28dwvxNmrc97askfq2cxa6auVdaPVkiSN0k9pcRKRiTOYCCNIAML1kj3XUR3zT+2JEgCg8HU+RwxI/SN9EdehviGjTrTzj8JOFxwjlcY+8DUCsHLufrLhtKW6r+4WdECptt7GuKMDha24xXspf6yXfwep4v6ykcpNYFbV37rXHzax08UOX539fkyLZMak9ddNCoSl2cbLxv46KTPDg5A+ZOHGU6E3HxmBZGdDNkT4O3WH/RpEMTKrHkkWZKqWdgQ=
-jobs:
-  include:
-  - stage: build the images and push to dockerhub
-  - script: ./docker_push.sh
-#deploy:
-#   provider: script
-#   script: bash docker_push.sh
-#   skip_cleanup: true
-#   on:
-#      repo: kimwithlglasses/safe-place-api
-#      tags: true
+#jobs:
+#  include:
+#  - stage: build the images and push to dockerhub
+#  - script: ./docker_push.sh
+deploy:
+   provider: script
+   script: bash docker_push.sh
+   skip_cleanup: true
