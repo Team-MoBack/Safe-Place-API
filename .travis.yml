@@ -1,4 +1,8 @@
 dist: trusty
+
+services: 
+  - docker
+
 env:
   global:
   - DOCKER_USER=kimwithglasses@kakao.com
@@ -10,4 +14,5 @@ env:
 deploy:
    provider: script
    script: bash docker_push.sh
-   skip_cleanup: true
+   on:
+     branch: master
