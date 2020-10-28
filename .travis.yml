@@ -4,4 +4,4 @@ jobs:
   include:
     - stage: test docker-compose.yml
       script:
-      - docker-compose up
+      - cd SafePlaceAPI && ./gradlew bootJar
