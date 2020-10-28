@@ -53,6 +53,11 @@
 >5. And the more you use the app and leave a review, the more points you get, and you can donate them elsewhere.
 >6. And you can compare points rankings with people in your area or other areas.  
 
+## How To Run?  
+1. Download docker-compose.yml in this [link](https://gist.github.com/JaeguKim/0ef42b6c8c6af4612daf9c3f315d491c)
+2. Unzip it, move to directory of docker-compose.yml
+3. Run  ``` docker-compose up ```
+
 ## ER Diagram  
 will be updated soon  
 
