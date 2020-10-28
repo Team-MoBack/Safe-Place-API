@@ -68,9 +68,11 @@ will be updated soon
 
 ## Version of tools  
 * Spring Boot - 2.3.4.RELEASE
+* Docker
 * Spring Security
 * Swagger2 - 2.9.2
 * MySQL - 5.1.45
 * JUnit5
-* JAVA - 11
+* JAVA - 8
+* Gradle
 
