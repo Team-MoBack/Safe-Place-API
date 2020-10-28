@@ -5,11 +5,9 @@ env:
   - secure: AEEIHpGihnGMPyUUf5LosnuoXJiJlRiAhiPpSiXmw+tG2TQRj+O92gnmOsZ8mnrOs54WbE7ECorBgDSCbdKFAEL6MFfqwIlXQgrucvAYaybk9Oo2eO6Gv9NQPKPgQS6O4ZHacEWncZz9ektk8XQsMjdvnvVgSTL8QYo9mQIqoqB1hZYrRRdKaXOqjnuK/zjryqS2xwtbHyJh3KNLPt3qzUqPYI/eKqa7QgiK5uLJp2uTPy4/ipbEuvxYZzZsF44sRBiqvQhsQ7Xo1xuv3bGGmhRS+NO8mbJF6egZZear+QzaRGqx5G3PZ7CY1sTpSkzwE56h0jXy2BRciClItJ4CNXdH4wf2MK9qsyY5lwY6u2+A4lHnz170UCs/G2tCY6qEg5mkVcf9XOd2D2cJaHW+eyHhta0SjRLOsOEYk2K1qS3FBqm1LGTHqNSx5VWQDVk78Wg7fu7M9TZpgjx0YTpjhaeEQKnmh+3VGn44CEdzn0lCOjPFDUujlidZOZ1dYcRAPSgh7JcGQqNuHCBQVr5LCJkeNtIalwvzPC96oQzLkl7tqYCJc+yIvTng9jPlHzS6zqV8lI6twOkHxvXxo9GvmLaT7Vm6zjfJqCLdWhsX8Sl4DBiHPQb8cQ/576EtznKYYrr6LuX+QVWwsW+ns09LqnmOTtxzNIz7BK3O/Kbr1ts=
 jobs:
   include:
-  - stage: login to dockerhub
-    script:
-    - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
   - stage: build safe-place images and push to dockerhub repository
     script:
+    - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
     - docker build --tag kimwithglasses/safe-place-db:0.0.1 . && docker push kimwithglasses/safe-place-db
     - cd SafePlaceAPI && ./gradlew bootJar && docker build --tag kimwithglasses/safe-place-api:0.0.1
       . && docker push kimwithglasses/safe-place-api
