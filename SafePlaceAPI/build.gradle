@@ -28,6 +28,8 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.3.4.RELEASE'
     runtimeOnly 'mysql:mysql-connector-java:8.0.21'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    
 }
 
 group = 'com.moBack'
