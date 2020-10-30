@@ -23,7 +23,7 @@ import com.moBack.backend.service.StoreService;
 @SpringBootTest
 @Transactional
 @ContextConfiguration(classes = {BackendApplication.class})
-public class StoreServiceTest {
+public class StoreServiceTest extends AbstractTest {
 
 	@Autowired private StoreService storeService;
 	

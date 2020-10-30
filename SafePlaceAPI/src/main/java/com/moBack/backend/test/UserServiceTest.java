@@ -24,7 +24,7 @@ import com.moBack.backend.service.UserService;
 @SpringBootTest
 @Transactional
 @ContextConfiguration(classes = {BackendApplication.class})
-public class UserServiceTest {
+public class UserServiceTest extends AbstractTest {
 
 	@Autowired private UserService userService;
 

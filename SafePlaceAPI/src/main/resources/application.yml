@@ -3,9 +3,7 @@ spring:
     username: root
     password: root
     #TEST
-    #url: jdbc:mysql://localhost:3306/moBack?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-    #DEPLOY
-    url: jdbc:mysql://safe-place-db:3306/moBack?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/moBack?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
 
 logging:
   level:

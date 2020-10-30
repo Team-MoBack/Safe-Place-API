@@ -43,6 +43,17 @@ publishing {
     }
 }
 
+ext.profile = (!project.hasProperty('profile') || !profile) ? '' : profile
+
+sourceSets {
+	main {
+		resources {
+			srcDirs "src/main/resources/${profile}"
+		}
+	}
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
