@@ -41,8 +41,6 @@ public class SwaggerConfig {
 				.securityContexts(Arrays.asList(securityContext()))
 				.securitySchemes(Arrays.asList(apiKey()));
 
-
-
 	}
 
 	private ApiInfo metaData() {
