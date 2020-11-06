@@ -66,7 +66,7 @@ public class StoreServiceTest extends AbstractTest {
 		storeService.save(store2);
 		Store store3 = new Store("angelius","amuge","Cafe",36.4344,154.12323);
 		storeService.save(store3);
-		List<Store> nearStores = storeService.findStoreFromPosition(new Position(35.818689,128.529462), 1);
+		List<Store> nearStores = storeService.findStoreFromPosition(new Position(35.818689,128.529462), 1000);
 		assertTrue(nearStores.size() >= 2);
 	}
 	

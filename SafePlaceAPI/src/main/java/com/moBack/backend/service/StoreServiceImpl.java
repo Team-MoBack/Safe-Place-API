@@ -69,7 +69,7 @@ public class StoreServiceImpl implements StoreService {
 		for (Store store : stores) {
 			Position storePos = new Position(store.getLongitude(),store.getLatitude());
 			System.out.println(center.distance(storePos,"K")*1000);
-			if (center.distance(storePos,"K")/1000 < radius) {
+			if (center.distance(storePos,"K")*1000 < radius) {
 				filteredStores.add(store);
 			}
 		}

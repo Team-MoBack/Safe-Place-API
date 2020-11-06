@@ -46,7 +46,7 @@ public class StoreController {
 	
 	@ApiOperation(value = "유저위치와 반경을 넘기면 주변 가게정보를 받아옵니다 ")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "radius", value = "반경", required = true, dataType = "double", paramType = "path")
+		@ApiImplicitParam(name = "radius", value = "반경(meter)", required = true, dataType = "double", paramType = "path")
 	})
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
