@@ -67,7 +67,7 @@ will be updated soon
 [Swagger Hub Link](https://app.swaggerhub.com/apis-docs/JaeguKim/safe-place_rest_api/0.0.0#/)  
 
 ## CI/CD
-![img](/images/)
+![img](/images/cicd.png)
 ## Version of tools  
 * Spring Boot - 2.3.4.RELEASE
 * Docker
