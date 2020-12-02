@@ -1,17 +1,21 @@
 package com.moBack.backend.dto;
 
+import org.gavaghan.geodesy.Ellipsoid;
+import org.gavaghan.geodesy.GeodeticCalculator;
+import org.gavaghan.geodesy.GlobalPosition;
+
 public class Position {
 
-	double longitude;
 	double latitude;
+	double longitude;
 
 	public Position(){
 
 	}
 
-	public Position(double longitude, double latitude) {
-		this.longitude = longitude;
+	public Position(double latitude, double longitude) {
 		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public double getLongitude() {
@@ -32,27 +36,16 @@ public class Position {
 
 
 	public double distance(Position pos, String unit) {
+	    GeodeticCalculator geoCalc = new GeodeticCalculator();
 
-		double lat1 = latitude;
-		double lat2 = pos.getLatitude();
-		double lon1 = longitude;
-		double lon2 = pos.getLongitude();
-		if ((lat1 == lat2) && (lon1 == lon2)) {
-			return 0;
-		}
-		else {
-			double theta = lon1 - lon2;
-			double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
-			dist = Math.acos(dist);
-			dist = Math.toDegrees(dist);
-			dist = dist * 60 * 1.1515;
-			if (unit.equals("K")) {
-				dist = dist * 1.609344;
-			} else if (unit.equals("N")) {
-				dist = dist * 0.8684;
-			}
-			return (dist);
-		}
+	    Ellipsoid reference = Ellipsoid.WGS84;  
+
+	    GlobalPosition userPos = new GlobalPosition(latitude, longitude, 0.0); // Point A
+
+	    GlobalPosition targetPos = new GlobalPosition(pos.getLatitude(), pos.getLongitude(), 0.0); // Point B
+
+	    double distance = geoCalc.calculateGeodeticCurve(reference, userPos, targetPos).getEllipsoidalDistance();
+	    return unit.equals("M") ? distance : distance/1000;
 	}
 
 	@Override

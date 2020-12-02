@@ -88,18 +88,18 @@ public class UserServiceTest extends AbstractTest {
 	@Test
 	public void findUserFromPositionTest() {
 		User user1 = new User("jaegu","kim","jaegu88@gmail.com","1234");
-		user1.setUserPosition(new UserPosition(35.818689,128.529462));
+		user1.setUserPosition(new UserPosition(35.818689,128.529462)); // 0.64km
 	
-		User user2 = new User("junhyun","park","junhyun@gmail.com","1234");
+		User user2 = new User("junhyun","park","junhyun@gmail.com","1234"); // 0.8km
 		user2.setUserPosition(new UserPosition(35.817925,128.533626));
 		
-		User user3 = new User("kildong","hong","kildong@gmail.com","1234");
+		User user3 = new User("kildong","hong","kildong@gmail.com","1234"); //0.56km
 		user3.setUserPosition(new UserPosition(35.816207,128.530512));
 		
 		Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user2,user3));
 		
 		List<User> nearUsers = userService.findUserFromPosition(new Position(35.814346,128.524734), 1000);
-		assertTrue(nearUsers.size() >= 3);
+		assertTrue(nearUsers.size() == 3);
 	}
 	
 	

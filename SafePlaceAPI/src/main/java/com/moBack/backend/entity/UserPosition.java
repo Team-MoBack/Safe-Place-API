@@ -16,28 +16,30 @@ public class UserPosition {
 	@Column(name = "id")
 	int id;
 	
-	@Column(name = "longitude")
-	double longitude;
 	
 	@Column(name = "latitude")
 	double latitude;
+	
+	@Column(name = "longitude")
+	double longitude;
+
 	
 	public UserPosition() {
 		
 	}
 	
-	public UserPosition(int id, double longitude, double latitude) {
+	public UserPosition(int id, double latitude, double longitude) {
 		super();
 		this.id = id;
-		this.longitude = longitude;
 		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 
 
-	public UserPosition(double longitude, double latitude) {
-		this.longitude = longitude;
+	public UserPosition(double latitude, double longitude) {
 		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public int getId() {
@@ -66,7 +68,7 @@ public class UserPosition {
 
 	@Override
 	public String toString() {
-		return "UserPosition [id=" + id + ", longitude=" + longitude + ", latitude=" + latitude + "]";
+		return "UserPosition [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 	
 	

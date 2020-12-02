@@ -49,11 +49,12 @@ public class UserServiceImpl implements UserService {
 	public List<User> findUserFromPosition(Position center, double radius){
 		List<User> users = userRepository.findAll();
 		List<User> filteredUsers = new ArrayList<>();
+	
 		for (User user : users) {
 			System.out.println(user);
 			UserPosition position = user.getUserPosition();
-			Position userPos = new Position(position.getLongitude(),position.getLatitude());
-			if (userPos.distance(center,"K")/1000 < radius) {
+			Position userPos = new Position(position.getLatitude(),position.getLongitude());
+			if (userPos.distance(center,"M") < radius) {
 				filteredUsers.add(user);
 			}
 		}
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> userOptional = userRepository.findById(id);
 		if (userOptional.isPresent()) {
 			User user = userOptional.get();
-			user.setUserPosition(new UserPosition(pos.getLongitude(),pos.getLatitude()));
+			user.setUserPosition(new UserPosition(pos.getLatitude(),pos.getLongitude()));
 			userRepository.save(user);
 		}
 		else {
