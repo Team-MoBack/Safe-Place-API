@@ -108,7 +108,7 @@ public class UserController {
 		User user = userService.findById(id);
 		if (user == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"user id is not found");
 		userService.updatePosition(id, pos);
-		return new UserPosition(id,pos.getLongitude(),pos.getLatitude());
+		return new UserPosition(id,pos.getLatitude(),pos.getLongitude());
 	}
 	
 	
