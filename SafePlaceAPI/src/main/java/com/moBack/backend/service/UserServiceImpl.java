@@ -71,16 +71,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User updatePosition(int id, Position pos) {
 		Optional<User> userOptional = userRepository.findById(id);
-		User updatedUser = null;
 		if (userOptional.isPresent()) {
 			User user = userOptional.get();
 			user.setUserPosition(new UserPosition(pos.getLongitude(),pos.getLatitude()));
-			updatedUser = userRepository.save(user);
+			userRepository.save(user);
 		}
 		else {
 			throw new RuntimeException("did not find user id - " + id);
 		}
-		return updatedUser;
+		return userOptional.get();
 	}
 
 	@Override

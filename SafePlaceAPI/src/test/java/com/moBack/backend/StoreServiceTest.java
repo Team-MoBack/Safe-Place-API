@@ -1,7 +1,7 @@
 package com.moBack.backend;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -11,10 +11,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.moBack.backend.BackendApplication;
+import com.moBack.backend.dao.StoreRepository;
 import com.moBack.backend.dto.Position;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
@@ -26,6 +27,7 @@ import com.moBack.backend.service.StoreService;
 public class StoreServiceTest extends AbstractTest {
 
 	@Autowired private StoreService storeService;
+	@MockBean private StoreRepository storeRepository;
 	
 	@Test
 	public void findAllTest() {
