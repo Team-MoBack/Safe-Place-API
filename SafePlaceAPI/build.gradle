@@ -30,6 +30,7 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.3.4.RELEASE'
     runtimeOnly 'mysql:mysql-connector-java:8.0.21'
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
     
 }
 
