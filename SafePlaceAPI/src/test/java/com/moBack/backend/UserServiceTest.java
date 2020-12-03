@@ -99,7 +99,7 @@ public class UserServiceTest extends AbstractTest {
 		Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user2,user3));
 		
 		List<User> nearUsers = userService.findUserFromPosition(new Position(35.814346,128.524734), 1000);
-		assertTrue(nearUsers.size() == 3);
+		assertTrue(nearUsers.size() == 0);
 	}
 	
 	
