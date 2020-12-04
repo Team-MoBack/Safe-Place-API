@@ -35,7 +35,7 @@ public class JwtAuthenticationController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
     @PostMapping("api/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
         final User user = userDetailService.authenticateByEmailAndPassword
                 (authenticationRequest.getEmail(), authenticationRequest.getPassword());
         final String token = jwtTokenUtil.generateToken(user.getEmail());
