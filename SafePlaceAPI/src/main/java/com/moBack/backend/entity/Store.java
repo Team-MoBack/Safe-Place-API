@@ -90,7 +90,11 @@ public class Store {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
+	
+	public static Store createStore(String name, String ownerName, String category, double latitude, double longitude) {
+		return new Store(name,ownerName,category,latitude,longitude);
+	}
+	
 	@Override
 	public String toString() {
 		return "Store [id=" + id + ", name=" + name + ", ownerName=" + owner + ", category=" + category

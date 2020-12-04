@@ -4,16 +4,16 @@ import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GlobalPosition;
 
-public class Position {
+public class PositionDTO {
 
 	double latitude;
 	double longitude;
 
-	public Position(){
+	public PositionDTO(){
 
 	}
 
-	public Position(double latitude, double longitude) {
+	public PositionDTO(double latitude, double longitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
@@ -35,7 +35,7 @@ public class Position {
 	}
 
 
-	public double distance(Position pos, String unit) {
+	public double distance(PositionDTO pos, String unit) {
 	    GeodeticCalculator geoCalc = new GeodeticCalculator();
 
 	    Ellipsoid reference = Ellipsoid.WGS84;  

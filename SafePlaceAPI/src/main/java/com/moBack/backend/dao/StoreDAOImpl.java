@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.Store;
 
 @Repository
@@ -32,12 +32,12 @@ public class StoreDAOImpl implements StoreDAO{
 	}
 	
 	@Override
-	public List<Store> findStoreFromPosition(Position center, double radius){
+	public List<Store> findStoreFromPosition(PositionDTO center, double radius){
 		System.out.println(center);
 		List<Store> stores = findAll();
 		List<Store> filteredStores = new ArrayList<>();
 		for (Store store : stores) {
-			Position storePos = new Position(store.getLongitude(),store.getLatitude());
+			PositionDTO storePos = new PositionDTO(store.getLongitude(),store.getLatitude());
 			System.out.println(center.distance(storePos,"K")*1000);
 			if (center.distance(storePos,"K")/1000 < radius) {
 				filteredStores.add(store);

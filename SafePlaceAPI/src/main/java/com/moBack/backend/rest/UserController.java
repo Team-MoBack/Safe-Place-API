@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.moBack.backend.dto.Position;
-import com.moBack.backend.dto.UserDto;
+import com.moBack.backend.dto.PositionDTO;
+import com.moBack.backend.dto.UserDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
@@ -57,7 +57,7 @@ public class UserController {
 	})
 	@ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
 	@PostMapping("/register")
-    public User saveUser(@RequestBody UserDto userDto) {
+    public User saveUser(@RequestBody UserDTO userDto) {
         User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
         return newUser;
     }
@@ -90,7 +90,7 @@ public class UserController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PostMapping("/search/{radius}")
-	public List<User> findUserFromPosition(@PathVariable double radius, @RequestBody Position center){
+	public List<User> findUserFromPosition(@PathVariable double radius, @RequestBody PositionDTO center){
 		return userService.findUserFromPosition(center, radius);
 	}
 	
@@ -104,7 +104,7 @@ public class UserController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PutMapping("/position/{id}")
-	public UserPosition updatePosition(@PathVariable int id, @RequestBody Position pos) {
+	public UserPosition updatePosition(@PathVariable int id, @RequestBody PositionDTO pos) {
 		User user = userService.findById(id);
 		if (user == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"user id is not found");
 		userService.updatePosition(id, pos);

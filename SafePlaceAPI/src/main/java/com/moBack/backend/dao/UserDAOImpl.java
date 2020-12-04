@@ -10,7 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 
@@ -43,12 +43,12 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public List<User> findUserFromPosition(Position center,double radius){
+	public List<User> findUserFromPosition(PositionDTO center,double radius){
 		List<User> users = findAll();
 		List<User> filteredUsers = new ArrayList<>();
 		for (User user : users) {
 			UserPosition position = user.getUserPosition();
-			Position userPos = new Position(position.getLongitude(),position.getLatitude());
+			PositionDTO userPos = new PositionDTO(position.getLongitude(),position.getLatitude());
 			if (userPos.distance(center,"K")/1000 < radius) {
 				filteredUsers.add(user);
 			}
@@ -63,7 +63,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public void updatePosition(int id, Position pos) {
+	public void updatePosition(int id, PositionDTO pos) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		User user = findById(id);
 		UserPosition userPosition = user.getUserPosition();

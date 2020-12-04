@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.StoreRepository;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.Store;
 
 @Service
@@ -63,11 +63,11 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	@Transactional
-	public List<Store> findStoreFromPosition(Position center, double radius) {
+	public List<Store> findStoreFromPosition(PositionDTO center, double radius) {
 		List<Store> stores = storeRepository.findAll();
 		List<Store> filteredStores = new ArrayList<>();
 		for (Store store : stores) {
-			Position storePos = new Position(store.getLatitude(),store.getLongitude());
+			PositionDTO storePos = new PositionDTO(store.getLatitude(),store.getLongitude());
 			if (center.distance(storePos,"M") < radius) {
 				filteredStores.add(store);
 			}

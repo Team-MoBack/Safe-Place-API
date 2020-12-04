@@ -20,7 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.moBack.backend.dao.StoreRepository;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.service.StoreService;
@@ -74,7 +74,7 @@ public class StoreServiceTest extends AbstractTest {
 		Store store2 = new Store("star bucks yongin","Park Ji sung","Cafe",35.818496,128.536702);
 		Store store3 = new Store("angelius","amuge","Cafe",36.4344,154.12323);
 		Mockito.when(storeRepository.findAll()).thenReturn(Arrays.asList(store1,store2,store3));
-		List<Store> nearStores = storeService.findStoreFromPosition(new Position(35.818689,128.529462), 1000);
+		List<Store> nearStores = storeService.findStoreFromPosition(new PositionDTO(35.818689,128.529462), 1000);
 		assertTrue(nearStores.size() == 2);
 	}
 	

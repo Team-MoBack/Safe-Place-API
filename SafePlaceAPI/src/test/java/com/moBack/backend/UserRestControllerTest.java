@@ -1,7 +1,6 @@
 package com.moBack.backend;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,18 +9,16 @@ import javax.transaction.Transactional;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
+import com.moBack.backend.dto.UserDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
@@ -74,7 +71,8 @@ public class UserRestControllerTest extends AbstractTest {
 	@Test
 	public void saveUserTest() throws Exception {
 		User newUser = new User("jaegu","kim","jaegu88@gmail.com","1234");
-		String json = super.mapToJson(newUser);
+		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(),newUser.getPassword());
+		String json = super.mapToJson(userDTO);
 		Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(newUser);
 		String uri = "/api/users/register";
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -92,7 +90,7 @@ public class UserRestControllerTest extends AbstractTest {
 		UserPosition newPos = new UserPosition(35.818689,128.529462);
 		user1.setUserPosition(newPos);
 		Mockito.when(userService.findById(user1.getId())).thenReturn(user1);
-		Mockito.when(userService.updatePosition(Mockito.anyInt(), Mockito.any(Position.class))).thenReturn(user1);
+		Mockito.when(userService.updatePosition(Mockito.anyInt(), Mockito.any(PositionDTO.class))).thenReturn(user1);
 		String uri = String.format("/api/users/position/%d",user1.getId());
 		String json = super.mapToJson(newPos);
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
@@ -125,9 +123,9 @@ public class UserRestControllerTest extends AbstractTest {
 		User user3 = new User("kildong","hong","kildong@gmail.com","1234"); //0.56km
 		user3.setUserPosition(new UserPosition(35.816207,128.530512));
 		
-		Position center = new Position(35.818689,128.529462);
+		PositionDTO center = new PositionDTO(35.818689,128.529462);
 		double radius = 1;
-		Mockito.when(userService.findUserFromPosition(Mockito.any(Position.class), Mockito.anyDouble())).thenReturn(Arrays.asList(user1,user2,user3));
+		Mockito.when(userService.findUserFromPosition(Mockito.any(PositionDTO.class), Mockito.anyDouble())).thenReturn(Arrays.asList(user1,user2,user3));
 		String uri = String.format("/api/users/search/%f",radius);
 		String json = super.mapToJson(center);
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)

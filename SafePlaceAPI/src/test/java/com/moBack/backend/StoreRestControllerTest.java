@@ -19,7 +19,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
+import com.moBack.backend.dto.StoreDTO;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
 
@@ -72,8 +73,9 @@ public class StoreRestControllerTest extends AbstractTest {
 	@Test
 	public void saveStoreTest() throws Exception {
 		Store newStore = new Store("star bucks sangin","Hong Kill Dong","Cafe",35.123,128.123);
+		StoreDTO storeDTO = new StoreDTO(newStore.getName(),newStore.getName(),newStore.getCategory(),newStore.getLatitude(),newStore.getLongitude());
 		Mockito.when(storeService.save(Mockito.any(Store.class))).thenReturn(newStore);
-		String json = super.mapToJson(newStore);
+		String json = super.mapToJson(storeDTO);
 		String uri = "/api/stores/register";
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
 				.contentType(MediaType.APPLICATION_JSON_VALUE).content(json)).andReturn();
@@ -86,13 +88,13 @@ public class StoreRestControllerTest extends AbstractTest {
 	
 	@Test
 	public void findStoresFromPositionTest() throws Exception {
-		Position center = new Position(35.123,128.123);
+		PositionDTO center = new PositionDTO(35.123,128.123);
 		double radius = 1000;
 		Store store1 = new Store("star bucks jincheon","Hong Kill Dong","Cafe",35.814346,128.524734);
 		Store store2 = new Store("star bucks yongin","Park Ji sung","Cafe",35.818496,128.536702);
 		Store store3 = new Store("angelius","amuge","Cafe",36.4344,154.12323);
 	
-		Mockito.when(storeService.findStoreFromPosition(Mockito.any(Position.class), Mockito.anyDouble())).thenReturn(Arrays.asList(store1,store2,store3));
+		Mockito.when(storeService.findStoreFromPosition(Mockito.any(PositionDTO.class), Mockito.anyDouble())).thenReturn(Arrays.asList(store1,store2,store3));
 		
 		String uri = String.format("/api/stores/search/%f",radius);
 		String json = super.mapToJson(center);

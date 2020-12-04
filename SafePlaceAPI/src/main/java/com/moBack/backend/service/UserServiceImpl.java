@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.UserRepository;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 
@@ -46,14 +46,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public List<User> findUserFromPosition(Position center, double radius){
+	public List<User> findUserFromPosition(PositionDTO center, double radius){
 		List<User> users = userRepository.findAll();
 		List<User> filteredUsers = new ArrayList<>();
 	
 		for (User user : users) {
 			System.out.println(user);
 			UserPosition position = user.getUserPosition();
-			Position userPos = new Position(position.getLatitude(),position.getLongitude());
+			PositionDTO userPos = new PositionDTO(position.getLatitude(),position.getLongitude());
 			if (userPos.distance(center,"M") < radius) {
 				filteredUsers.add(user);
 			}
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User updatePosition(int id, Position pos) {
+	public User updatePosition(int id, PositionDTO pos) {
 		Optional<User> userOptional = userRepository.findById(id);
 		if (userOptional.isPresent()) {
 			User user = userOptional.get();

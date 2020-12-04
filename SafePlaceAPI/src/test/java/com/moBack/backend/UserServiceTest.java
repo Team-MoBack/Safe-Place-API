@@ -22,7 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.moBack.backend.dao.UserRepository;
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
@@ -76,8 +76,8 @@ public class UserServiceTest extends AbstractTest {
 		User user1 = new User("jaegu","kim","jaegu88@gmail.com","1234");
 		
 		Mockito.when(userRepository.findById(user1.getId())).thenReturn(Optional.of(user1));
-		Position updatedPos = new Position(35.818689,128.529462);
-		User updatedUser = userService.updatePosition(user1.getId(), new Position(35.818689,128.529462));
+		PositionDTO updatedPos = new PositionDTO(35.818689,128.529462);
+		User updatedUser = userService.updatePosition(user1.getId(), new PositionDTO(35.818689,128.529462));
 		assertEquals(updatedPos.getLatitude(),updatedUser.getUserPosition().getLatitude(),0.001);
 		assertEquals(updatedPos.getLongitude(),updatedUser.getUserPosition().getLongitude(),0.001);
 		
@@ -98,7 +98,7 @@ public class UserServiceTest extends AbstractTest {
 		
 		Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user2,user3));
 		
-		List<User> nearUsers = userService.findUserFromPosition(new Position(35.814346,128.524734), 1000);
+		List<User> nearUsers = userService.findUserFromPosition(new PositionDTO(35.814346,128.524734), 1000);
 		assertTrue(nearUsers.size() == 3);
 	}
 	

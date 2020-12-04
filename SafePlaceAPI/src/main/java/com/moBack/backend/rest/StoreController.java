@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
+import com.moBack.backend.dto.StoreDTO;
 import com.moBack.backend.entity.Store;
 import com.moBack.backend.service.StoreService;
 
@@ -53,7 +54,7 @@ public class StoreController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PostMapping("/search/{radius}")
-	public List<Store> findStoresFromPosition(@PathVariable double radius, @RequestBody Position center){
+	public List<Store> findStoresFromPosition(@PathVariable double radius, @RequestBody PositionDTO center){
 		return storeService.findStoreFromPosition(center, radius);
 	}
 
@@ -82,8 +83,8 @@ public class StoreController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
-	public Store register(@RequestBody Store store) {
-		return storeService.save(store);
+	public Store register(@RequestBody StoreDTO store) {
+		return storeService.save(Store.createStore(store.getName(), store.getOwner(), store.getCategory(), store.getLatitude(), store.getLongitude()));
 	}
 
 }

@@ -2,7 +2,7 @@ package com.moBack.backend.dao;
 
 import java.util.List;
 
-import com.moBack.backend.dto.Position;
+import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.Store;
 
 public interface StoreDAO {
@@ -15,5 +15,5 @@ public interface StoreDAO {
 
 	public void deleteById(int id);
 
-	public List<Store> findStoreFromPosition(Position center, double radius);
+	public List<Store> findStoreFromPosition(PositionDTO center, double radius);
 }
