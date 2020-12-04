@@ -17,7 +17,7 @@ public class JwtTokenUtil {
 
     private static final String secret = "jwtpassword";
 
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60; //5hour
+    public static final long JWT_TOKEN_VALIDITY = 5L * 60 * 60; //5hour
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getId);

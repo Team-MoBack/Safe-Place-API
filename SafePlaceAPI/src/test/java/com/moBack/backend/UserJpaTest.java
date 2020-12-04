@@ -19,18 +19,18 @@ public class UserJpaTest extends AbstractTest {
     private UserRepository userRepository;
 
     @Test
-    public void user_save_test() {
+    public void saveTest() {
         final User user = new User("killdong","hong","test@gmail.com","1234");
         final User savedUser = userRepository.save(user);
-        assertNotNull(savedUser.getId());
+        assertNotNull(savedUser);
     }
 
     @Test
-    public void user_save_and_find_test() {
+    public void findByEmailTest() {
     	final User user = new User("killdong","hong","test@gmail.com","1234");
         final User savedUser = userRepository.save(user);
         final User foundUser = userRepository.findByEmail(savedUser.getEmail()).get();
-        assertNotNull(foundUser.getId());
+        assertNotNull(foundUser);
     }
     
     
