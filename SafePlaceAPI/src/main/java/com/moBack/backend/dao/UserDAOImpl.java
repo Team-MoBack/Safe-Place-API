@@ -43,7 +43,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public List<User> findUserFromPosition(PositionDTO center,double radius){
+	public List<User> findUserFromPosition(PositionDTO center, double radius){
 		List<User> users = findAll();
 		List<User> filteredUsers = new ArrayList<>();
 		for (User user : users) {

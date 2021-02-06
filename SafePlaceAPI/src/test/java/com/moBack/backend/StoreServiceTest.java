@@ -22,7 +22,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.moBack.backend.dao.StoreRepository;
 import com.moBack.backend.dto.PositionDTO;
 import com.moBack.backend.entity.Store;
-import com.moBack.backend.entity.User;
 import com.moBack.backend.service.StoreService;
 
 @RunWith(SpringRunner.class)

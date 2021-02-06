@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.moBack.backend.dto.PositionDTO;
-import com.moBack.backend.dto.UserDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
@@ -57,7 +56,7 @@ public class UserController {
 	})
 	@ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
 	@PostMapping("/register")
-    public User saveUser(@RequestBody UserDTO userDto) {
+    public User saveUser(@RequestBody UserDto userDto) {
         User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
         return newUser;
     }

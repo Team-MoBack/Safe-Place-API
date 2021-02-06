@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moBack.backend.dto.PositionDTO;
-import com.moBack.backend.dto.UserDTO;
 import com.moBack.backend.entity.User;
 import com.moBack.backend.entity.UserPosition;
 import com.moBack.backend.service.UserService;
@@ -71,7 +70,7 @@ public class UserRestControllerTest extends AbstractTest {
 	@Test
 	public void saveUserTest() throws Exception {
 		User newUser = new User("jaegu","kim","jaegu88@gmail.com","1234");
-		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(),newUser.getPassword());
+		UserDto userDTO = new UserDto(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(),newUser.getPassword());
 		String json = super.mapToJson(userDTO);
 		Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(newUser);
 		String uri = "/api/users/register";
