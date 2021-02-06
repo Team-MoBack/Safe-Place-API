@@ -2,6 +2,7 @@ package com.moBack.backend.rest;
 
 import java.util.List;
 
+import com.moBack.backend.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,7 +57,7 @@ public class UserController {
 	})
 	@ApiImplicitParam(name = "JWT", required = false, paramType = "authorization")
 	@PostMapping("/register")
-    public User saveUser(@RequestBody UserDto userDto) {
+    public User saveUser(@RequestBody UserDTO userDto) {
         User newUser = userService.save(User.createMember(userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(), encode.encode(userDto.getPassword())));
         return newUser;
     }

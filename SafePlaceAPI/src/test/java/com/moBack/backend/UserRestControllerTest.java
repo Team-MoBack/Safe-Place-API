@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.moBack.backend.dto.UserDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -70,7 +71,7 @@ public class UserRestControllerTest extends AbstractTest {
 	@Test
 	public void saveUserTest() throws Exception {
 		User newUser = new User("jaegu","kim","jaegu88@gmail.com","1234");
-		UserDto userDTO = new UserDto(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(),newUser.getPassword());
+		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(),newUser.getPassword());
 		String json = super.mapToJson(userDTO);
 		Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(newUser);
 		String uri = "/api/users/register";
