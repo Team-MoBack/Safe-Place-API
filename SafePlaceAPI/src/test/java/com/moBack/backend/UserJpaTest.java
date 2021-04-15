@@ -24,8 +24,4 @@ public class UserJpaTest extends AbstractTest {
         final User savedUser = userRepository.save(user);
         assertNotNull(savedUser);
     }
-
-
-    
-    
 }
