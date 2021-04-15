@@ -3,7 +3,10 @@ spring:
     username: root
     password: root
     #TEST
-    url: jdbc:mysql://localhost:3306/moBack?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/safe_place?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.spatial.dialect.mysql.MySQL56SpatialDialect
 
 logging:
   level:

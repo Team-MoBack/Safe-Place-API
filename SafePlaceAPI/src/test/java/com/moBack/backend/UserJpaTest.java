@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.moBack.backend.dao.UserRepository;
 import com.moBack.backend.entity.User;
 
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @Transactional
 public class UserJpaTest extends AbstractTest {
 
@@ -25,13 +25,7 @@ public class UserJpaTest extends AbstractTest {
         assertNotNull(savedUser);
     }
 
-    @Test
-    public void findByEmailTest() {
-    	final User user = new User("killdong","hong","test@gmail.com","1234");
-        final User savedUser = userRepository.save(user);
-        final User foundUser = userRepository.findByEmail(savedUser.getEmail()).get();
-        assertNotNull(foundUser);
-    }
+
     
     
 }

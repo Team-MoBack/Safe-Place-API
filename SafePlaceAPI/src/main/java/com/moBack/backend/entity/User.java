@@ -31,30 +31,15 @@ public class User {
 	@Column(name="password")
 	String password;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_position_id")
-	private UserPosition userPosition;
-	
-	public User() {
-		
-	}
-	
-	public User(int id, String firstName, String lastName, String email, String password, UserPosition userPosition) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.userPosition = userPosition;
-	}
-	
+	public User(){}
+
 	public User(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -68,54 +53,19 @@ public class User {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	public String getEmail() {
 		return email;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public UserPosition getUserPosition() {
-		return userPosition;
-	}
-
-	public void setUserPosition(UserPosition userPosition) {
-		this.userPosition = userPosition;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-    public static User createMember(String firstName, String lastName, String email, String password) {
-        return new User(firstName,lastName,email,password);
-    }
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", userPosition=" + userPosition + "]";
-	}
-
-    
 }

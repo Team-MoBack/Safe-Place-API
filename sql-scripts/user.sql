@@ -1,4 +1,4 @@
-USE `moBack`;
+USE `safe_place`;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
