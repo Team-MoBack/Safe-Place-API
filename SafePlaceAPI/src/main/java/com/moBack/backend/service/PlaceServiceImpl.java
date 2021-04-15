@@ -35,7 +35,7 @@ public class PlaceServiceImpl implements PlaceService {
 			place = result.get();
 		}
 		else {
-			throw new RuntimeException("Did not find Store id - " + id);
+			throw new RuntimeException("Did not find Place id - " + id);
 		}
 		return place;
 	}

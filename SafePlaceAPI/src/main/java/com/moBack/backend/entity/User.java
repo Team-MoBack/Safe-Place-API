@@ -1,5 +1,9 @@
 package com.moBack.backend.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,26 +16,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="user")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	int id;
+	private int id;
 	
 	@Column(name="first_name")
-	String firstName;
+	private String firstName;
 	
 	@Column(name="last_name")
-	String lastName;
+	private String lastName;
 	
 	@Column(name="email")
-	String email;
+	private String email;
 	
 	@Column(name="password")
-	String password;
-
-	public User(){}
+	private String password;
 
 	public User(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
@@ -39,33 +44,4 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-
-	public String getLastName() {
-		return lastName;
-	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
 }

@@ -1,5 +1,9 @@
 package com.moBack.backend.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.geolatte.geom.Point;
 
 import javax.persistence.Column;
@@ -11,42 +15,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="place")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Place {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	int id;
+	private int id;
 	
 	@Column(name="name")
-	String name;
+	private String name;
 
 	@Column(name="location")
-	Point position;
+	private Point position;
 
-	public Place() {
-		
-	}
-	
 	public Place(String name, Point position) {
 		this.name = name;
 		this.position = position;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public static Place createPlace(String name, Point position) {

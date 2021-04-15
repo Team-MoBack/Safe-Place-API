@@ -12,4 +12,5 @@ import java.util.List;
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
     @Query(value = "select * from Place where ST_Distance_Sphere(location,point(:#{#center.getPosition().getLon()},:#{#center.getPosition().getLat()})) < :radius ", nativeQuery = true)
     public List<Place> getPlaces(@Param("center") Point<G2D> center, @Param("radius") float radius);
+
 }
