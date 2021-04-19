@@ -8,10 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class LoginResult {
-
+public class LoginResultDTO {
     private boolean isSuccessful;
     private String message;
     private String token;
-
 }

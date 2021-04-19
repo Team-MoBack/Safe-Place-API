@@ -1,7 +1,7 @@
 USE `safe_place`;
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE `account` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `first_name` varchar(50) NOT NULL,
     `last_name` varchar(50) NOT NULL,

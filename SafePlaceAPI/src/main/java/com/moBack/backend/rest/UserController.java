@@ -1,14 +1,12 @@
 package com.moBack.backend.rest;
 
 import com.moBack.backend.dto.AccountDTO;
-import com.moBack.backend.dto.LoginResult;
+import com.moBack.backend.dto.LoginResultDTO;
 import com.moBack.backend.dto.UserPwDTO;
 import com.moBack.backend.service.TokenService;
 import com.moBack.backend.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
-import org.springframework.session.data.redis.RedisSessionRepository;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.moBack.backend.entity.Account;
@@ -19,10 +17,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RestController
@@ -50,16 +47,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-	public LoginResult login(@RequestBody UserPwDTO userPwDTO, HttpServletResponse response) {
-		LoginResult loginResult = userService.login(userPwDTO);
-		if (loginResult.isSuccessful()) {
+	public LoginResultDTO login(@RequestBody UserPwDTO userPwDTO, HttpServletResponse response) {
+		LoginResultDTO loginResultDTO = userService.login(userPwDTO);
+		if (loginResultDTO.isSuccessful()) {
 			String token = tokenService.saveToken(userPwDTO.getEmail());
-			loginResult.setToken(token);
+			loginResultDTO.setToken(token);
 		}
 		else {
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
-		return loginResult;
+		return loginResultDTO;
 	}
 
 	@PostMapping("/logout")
@@ -82,8 +79,10 @@ public class UserController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@GetMapping("/{id}")
-	public Account getUser(@PathVariable int id) {
-		return userService.findById(id);
+	public Account findById(@PathVariable int id) {
+		Optional<Account> account = userService.findById(id);
+		if (account.isPresent()) return account.get();
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "user id not found - " + id);
 	}
 
 }

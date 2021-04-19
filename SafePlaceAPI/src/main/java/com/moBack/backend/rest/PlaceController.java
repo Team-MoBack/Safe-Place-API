@@ -1,6 +1,7 @@
 package com.moBack.backend.rest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.moBack.backend.dto.PlaceDTO;
@@ -31,12 +32,11 @@ public class PlaceController {
 	
 	private PlaceService placeService;
 
-	@Autowired
 	public PlaceController(PlaceService placeService) {
 		this.placeService = placeService;
 	}
 
-	@ApiOperation(value = "유저위치와 반경을 넘기면 주변 장소 정보를 받아옵니다 ")
+	@ApiOperation(value = "위치와 반경을 넘기면 주변 장소 정보를 받아옵니다 ")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "radius", value = "반경(meter)", required = true, dataType = "double", paramType = "path")
 	})
@@ -60,11 +60,11 @@ public class PlaceController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	public Place getPlace(@PathVariable int id) {
-		Place place = placeService.findById(id);
-		if (place == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "user id not found - " + id);
+		Optional<Place> place = placeService.findById(id);
+		if (place.isPresent()) {
+			return place.get();
 		}
-		return place;
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "place id not found - " + id);
 	}
 	
 	@ApiOperation(value = "장소를 등록합니다 ")

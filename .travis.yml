@@ -9,5 +9,5 @@ jobs:
     script:
     - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
     - docker build --tag kimwithglasses/safe-place-db:0.0.1 . && docker push kimwithglasses/safe-place-db
-    - cd SafePlaceAPI && ./gradlew clean build -Pprofile=test && ./gradlew clean build -Pprofile=ci -x test && docker build --tag kimwithglasses/safe-place-api:0.0.1
+    - cd SafePlaceAPI && ./gradlew clean build -Pprofile=test -x test && ./gradlew clean build -Pprofile=ci -x test && docker build --tag kimwithglasses/safe-place-api:0.0.1
       . && docker push kimwithglasses/safe-place-api

@@ -1,6 +1,7 @@
 package com.moBack.backend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.moBack.backend.dto.PointDTO;
 import com.moBack.backend.entity.Place;
@@ -8,7 +9,7 @@ import org.geolatte.geom.Point;
 
 public interface PlaceService {
 	
-	public Place findById(int id);
+	public Optional<Place> findById(int id);
 
 	public Place save(Place place);
 	

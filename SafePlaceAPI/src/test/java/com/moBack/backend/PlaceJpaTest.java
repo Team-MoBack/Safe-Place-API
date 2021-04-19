@@ -33,9 +33,4 @@ public class PlaceJpaTest extends AbstractTest{
         List<Place> res = repository.getPlaces(pointDTO,200);
         Assert.assertEquals(1,repository.getPlaces(pointDTO,200).size());
     }
-
-    @Test
-    public void test() {
-        Assert.assertEquals(1,repository.findAll().size());
-    }
 }

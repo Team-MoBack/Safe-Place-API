@@ -1,12 +1,8 @@
 package com.moBack.backend.provider;
 
 import com.moBack.backend.service.TokenService;
-import com.moBack.backend.util.ApiConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.session.data.redis.RedisSessionRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +29,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("pre handle!");
         String token = getToken(request);
         boolean result = token != null && token.isEmpty() == false && tokenService.checkToken(token);
         if (result == false) {

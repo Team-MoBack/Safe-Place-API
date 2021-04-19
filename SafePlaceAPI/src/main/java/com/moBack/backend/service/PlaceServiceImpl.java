@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 
 import com.moBack.backend.dto.PointDTO;
 import com.moBack.backend.entity.Place;
-import org.geolatte.geom.Point;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.PlaceRepository;
@@ -23,16 +22,13 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	@Override
 	@Transactional
-	public Place findById(int id) {
+	public Optional<Place> findById(int id) {
 		Optional<Place> result = placeRepository.findById(id);
 		Place place = null;
 		if (result.isPresent()) {
 			place = result.get();
 		}
-		else {
-			throw new RuntimeException("Did not find Place id - " + id);
-		}
-		return place;
+		return Optional.of(place);
 	}
 
 	@Override

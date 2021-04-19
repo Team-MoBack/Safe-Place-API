@@ -1,15 +1,12 @@
 package com.moBack.backend.service;
 
-import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import com.moBack.backend.dto.AccountDTO;
-import com.moBack.backend.dto.LoginResult;
+import com.moBack.backend.dto.LoginResultDTO;
 import com.moBack.backend.dto.UserPwDTO;
-import org.springframework.session.data.redis.RedisSessionRepository;
 import org.springframework.stereotype.Service;
 
 import com.moBack.backend.dao.AccountRepository;
@@ -41,17 +38,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public LoginResult login(UserPwDTO userPwDTO) {
+	public LoginResultDTO login(UserPwDTO userPwDTO) {
 		Optional<Account> account = accountRepository.findByEmail(userPwDTO.getEmail());
 		if (account.isPresent()) {
 			if (userPwDTO.getPassword().equals(account.get().getPassword())) {
-				return LoginResult.builder()
+				return LoginResultDTO.builder()
 						.isSuccessful(true)
 						.message("Login Success")
 						.build();
 			}
 		}
-		return LoginResult.builder()
+		return LoginResultDTO.builder()
 				.isSuccessful(false)
 				.message("Email or password is incorrect")
 				.build();
@@ -59,16 +56,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public Account findById(int id) {
-		Optional<Account> result = accountRepository.findById(id);
-		Account account = null;
-		if (result.isPresent()) {
-			account = result.get();
-		}
-		else {
-			throw new RuntimeException("Did not find user id - "+id);
-		}
-		return account;
+	public Optional<Account> findById(int id) {
+		return accountRepository.findById(id);
 	}
 
 	@Override
