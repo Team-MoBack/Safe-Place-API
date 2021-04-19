@@ -56,7 +56,8 @@
 >6. And you can compare points rankings with people in your area or other areas.  
 
 ## Architecture
-![architecture](https://user-images.githubusercontent.com/22807942/114544728-fc300e00-9c95-11eb-87bb-5818378bfb45.png)
+![architecture](https://user-images.githubusercontent.com/22807942/114974672-ce2d1280-9ebd-11eb-9966-d17a7528b6c0.png)
+
 
 ## How To Run?  
 1. Download docker-compose.yml in this [link](https://gist.github.com/JaeguKim/0ef42b6c8c6af4612daf9c3f315d491c)
