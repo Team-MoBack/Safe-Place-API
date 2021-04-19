@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.moBack.backend.dto.PointDTO;
 import com.moBack.backend.entity.Place;
 import org.geolatte.geom.Point;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,6 @@ public class PlaceServiceImpl implements PlaceService {
 		this.placeRepository = placeRepository;
 	}
 	
-	@Override
-	@Transactional
-	public List<Place> findAll() {
-		return placeRepository.findAll();
-	}
-
 	@Override
 	@Transactional
 	public Place findById(int id) {
@@ -47,7 +42,8 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public List<Place> findPlaces(Point center, float radius) {
+	@Transactional
+	public List<Place> findPlaces(PointDTO center, float radius) {
 		return placeRepository.getPlaces(center,radius);
 	}
 

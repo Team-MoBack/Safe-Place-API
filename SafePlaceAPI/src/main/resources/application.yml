@@ -1,9 +1,18 @@
 spring:
+  servlet:
+    session:
+      timeout: 3
+  session:
+    store-type: redis
   datasource:
     username: root
     password: root
-    #TEST
     url: jdbc:mysql://localhost:3306/safe_place?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+  redis:
+    host: localhost
+    #password:
+    port: 6379
+
   jpa:
     database: mysql
     database-platform: org.hibernate.spatial.dialect.mysql.MySQL56SpatialDialect

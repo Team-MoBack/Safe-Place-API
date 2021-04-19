@@ -1,7 +1,10 @@
 package com.moBack.backend.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.moBack.backend.dto.PlaceDTO;
+import com.moBack.backend.dto.PointDTO;
 import com.moBack.backend.entity.Place;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
@@ -42,8 +45,8 @@ public class PlaceController {
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
 	@PostMapping("/search/{radius}")
-	public List<Place> findPlaces(@RequestBody Point<G2D> center,@PathVariable float radius){
-		return placeService.findPlaces(center, radius);
+	public List<PlaceDTO> findPlaces(@RequestBody PointDTO center, @PathVariable float radius) {
+		return placeService.findPlaces(center,radius).stream().map(PlaceDTO::new).collect(Collectors.toList());
 	}
 
 	@ApiOperation(value = "place id에 해당하는 장 정보를 받아옵니다 ")
@@ -64,7 +67,7 @@ public class PlaceController {
 		return place;
 	}
 	
-	@ApiOperation(value = "장를 등록합니다 ")
+	@ApiOperation(value = "장소를 등록합니다 ")
 	@PostMapping("/register")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
