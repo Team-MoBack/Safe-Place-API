@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.moBack.backend.dto.NumberOfPeopleInPlaceDTO;
 import com.moBack.backend.dto.PlaceDTO;
 import com.moBack.backend.dto.PointDTO;
 import com.moBack.backend.entity.Place;
@@ -25,6 +26,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/places")
@@ -73,8 +76,14 @@ public class PlaceController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 에러")
 	})
-	public Place register(@RequestBody Place place) {
+	public String register(@RequestBody PlaceDTO place) {
 		return placeService.save(place);
 	}
 
+	@PostMapping("/update/people")
+	public void produceNumberOfPeople(@RequestBody NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO, HttpServletResponse response) {
+		if (placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO) == false) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to update number of people by place id");
+		}
+	}
 }

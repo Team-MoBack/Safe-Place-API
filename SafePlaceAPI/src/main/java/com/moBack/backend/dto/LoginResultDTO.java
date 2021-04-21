@@ -1,13 +1,9 @@
 package com.moBack.backend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
 @Builder
+@Data
 public class LoginResultDTO {
     private boolean isSuccessful;
     private String message;

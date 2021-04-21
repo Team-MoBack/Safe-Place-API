@@ -1,14 +1,12 @@
 package com.moBack.backend.dto;
 
 import com.moBack.backend.entity.Place;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.geolatte.geom.Point;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlaceDTO {
