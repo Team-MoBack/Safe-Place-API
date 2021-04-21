@@ -30,6 +30,9 @@ public class Place {
 	@Column(name="location")
 	private Point position;
 
+	@Column(name="number_of_people")
+	private int numberOfPeople;
+
 	public Place(String name, Point position) {
 		this.name = name;
 		this.position = position;
