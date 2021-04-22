@@ -2,18 +2,32 @@ package com.moBack.backend.dao;
 
 import com.moBack.backend.AbstractTest;
 import com.moBack.backend.dto.PointDTO;
+import com.moBack.backend.entity.Place;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.locationtech.jts.io.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 
+import static org.geolatte.geom.builder.DSL.g;
+import static org.geolatte.geom.builder.DSL.point;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
+
 @Transactional
 public class PlaceJpaTest extends AbstractTest {
 
     @Autowired
     PlaceRepository repository;
+
+    @Before
+    public void setup() {
+        repository.save(Place.builder()
+                .name("test-place-1")
+                .position(point(WGS84,g(37.4847142,37.5188072)))
+                .build());
+    }
 
     @Test
     public void getPlacesTest() throws ParseException {
@@ -23,7 +37,7 @@ public class PlaceJpaTest extends AbstractTest {
       */
         //Point<G2D> pnt = point(WGS84,g(37.4847142,37.5188072));
         PointDTO pointDTO = new PointDTO(37.4847142, 37.5188072);
-        Assert.assertEquals(1, repository.getPlaces(pointDTO, 200).size());
+        Assert.assertTrue(repository.getPlaces(pointDTO, 200).size() > 0);
     }
 
     @Test

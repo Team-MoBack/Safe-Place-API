@@ -58,15 +58,16 @@ public class UserControllerTest extends AbstractTest {
     }
 
     @Test
-    public void findByIdTest() {
+    public void findByValidIdTest() {
         int validId = 1;
         Mockito.when(userService.findById(validId)).thenReturn(Optional.of(new Account()));
         Assert.assertNotNull(controller.findById(validId));
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void findByInValidIdTest() {
+    public void findByInvalidIdTest() {
         int inValidId = 2;
         Mockito.when(userService.findById(inValidId)).thenReturn(Optional.empty());
+        controller.findById(inValidId);
     }
 }

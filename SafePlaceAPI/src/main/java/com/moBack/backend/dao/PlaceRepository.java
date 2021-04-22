@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
-    @Query(value = "select * from Place where ST_Distance_Sphere(location,point(:#{#center.getLon()},:#{#center.getLat()})) < :radius ", nativeQuery = true)
+    @Query(value = "select * from Place where ST_Distance_Sphere(location,ST_SRID(point(:#{#center.getLon()},:#{#center.getLat()}),4326)) < :radius ", nativeQuery = true)
     public List<Place> getPlaces(@Param("center") PointDTO center, @Param("radius") float radius);
 }
