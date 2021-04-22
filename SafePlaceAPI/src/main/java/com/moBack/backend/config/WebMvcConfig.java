@@ -1,6 +1,6 @@
 package com.moBack.backend.config;
 
-import com.moBack.backend.provider.AuthInterceptor;
+import com.moBack.backend.Interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

@@ -81,7 +81,7 @@ public class PlaceController {
 	}
 
 	@PostMapping("/update/people")
-	public void produceNumberOfPeople(@RequestBody NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO, HttpServletResponse response) {
+	public void produceNumberOfPeople(@RequestBody NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO) {
 		if (placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO) == false) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to update number of people by place id");
 		}

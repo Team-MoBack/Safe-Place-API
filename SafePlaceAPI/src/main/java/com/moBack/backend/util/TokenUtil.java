@@ -13,6 +13,13 @@ public class TokenUtil {
         return new Date().getTime() + SEPARATOR + email + SEPARATOR + RandomString.make(10);
     }
 
+    public static String getToken(String header) {
+        if (header.contains("Bearer")) {
+            return header.split(" ")[1];
+        }
+        return "";
+    }
+
     public static Optional<String> getEmailFromToken(String token) {
         if (token.isEmpty()) return Optional.empty();
         String[] param = token.split(SEPARATOR);

@@ -54,7 +54,7 @@ public class UserController {
 			loginResultDTO.setToken(token);
 		}
 		else {
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
 		return loginResultDTO;
 	}
