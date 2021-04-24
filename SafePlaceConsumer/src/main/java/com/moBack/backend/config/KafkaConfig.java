@@ -20,10 +20,11 @@ public class KafkaConfig {
     private static final Integer Concurrency = 3;
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Integer,Integer> kafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<Integer,Integer> batchFactory() {
         ConcurrentKafkaListenerContainerFactory<Integer,Integer> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(Concurrency);
+        factory.setBatchListener(true);
         factory.getContainerProperties().setPollTimeout(3000);
         return factory;
     }
