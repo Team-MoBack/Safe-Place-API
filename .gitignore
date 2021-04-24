@@ -1,1 +1,6 @@
 /.metadata/
+*.bin
+*.lock
+*.class
+*.txt
+*.hprof

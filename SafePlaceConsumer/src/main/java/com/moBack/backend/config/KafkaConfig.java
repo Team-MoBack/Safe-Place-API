@@ -40,6 +40,7 @@ public class KafkaConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,true);
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
         return props;
     }
 }
