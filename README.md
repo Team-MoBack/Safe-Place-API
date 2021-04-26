@@ -56,7 +56,8 @@
 >6. And you can compare points rankings with people in your area or other areas.  
 
 ## Architecture
-![architecture](https://user-images.githubusercontent.com/22807942/114974672-ce2d1280-9ebd-11eb-9966-d17a7528b6c0.png)
+![architecture](https://user-images.githubusercontent.com/22807942/116087811-35c43880-a6dc-11eb-986c-bb7876fee293.png)
+
 
 
 ## How To Run?  
