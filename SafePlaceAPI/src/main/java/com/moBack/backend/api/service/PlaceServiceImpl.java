@@ -46,6 +46,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
+	@Transactional
 	public boolean produceNumberOfPeople(NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO) {
 		final ProducerRecord<Integer, Integer> record = new ProducerRecord<>(KafkaConfig.NUMBER_OF_PEOPLE_BY_PLACE_TOPIC,numberOfPeopleInPlaceDTO.getId(),numberOfPeopleInPlaceDTO.getNumberOfPeople());
 		try {

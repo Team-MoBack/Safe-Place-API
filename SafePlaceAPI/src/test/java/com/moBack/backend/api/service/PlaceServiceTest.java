@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.SettableListenableFuture;
 
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -30,7 +31,6 @@ public class PlaceServiceTest extends AbstractTest {
     private PlaceRepository placeRepository;
     @MockBean
     private KafkaTemplate<Integer, Integer> kafkaTemplate;
-    private ListenableFuture<SendResult<Integer, Integer>> listenableFuture;
     private int id1 = 1;
     private int id2 = 2;
     private PlaceDTO dto1 = PlaceDTO.builder()
@@ -60,9 +60,11 @@ public class PlaceServiceTest extends AbstractTest {
                 .id(1)
                 .numberOfPeople(10)
                 .build();
-        Mockito.when(kafkaTemplate.send(Mockito.any(ProducerRecord.class))).thenReturn(listenableFuture);
         Assert.assertTrue(placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO));
-        Mockito.when(listenableFuture.get(2,TimeUnit.SECONDS)).thenThrow(TimeoutException.class);
-        Assert.assertFalse(placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO));
+        PlaceService testPlaceService = new PlaceServiceImpl(null,kafkaTemplate);
+        SettableListenableFuture<SendResult<String, Object>> future = new SettableListenableFuture<>();
+        future.setException(new RuntimeException());
+        Mockito.when(kafkaTemplate.send(Mockito.any(ProducerRecord.class))).thenReturn(future);
+        Assert.assertFalse(testPlaceService.produceNumberOfPeople(numberOfPeopleInPlaceDTO));
     }
 }
