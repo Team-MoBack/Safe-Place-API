@@ -7,6 +7,8 @@ import com.moBack.backend.api.entity.Place;
 import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
 import com.moBack.backend.api.dto.PlaceDTO;
 import com.moBack.backend.api.dto.PointDTO;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.util.concurrent.ListenableFuture;
 
 public interface PlaceService {
 	
@@ -19,4 +21,6 @@ public interface PlaceService {
 	public List<Place> findPlaces(PointDTO center, float radius);
 	
 	public void deleteById(int id);
+
+	public void setKafkaTemplate(KafkaTemplate kafkaTemplate);
 }

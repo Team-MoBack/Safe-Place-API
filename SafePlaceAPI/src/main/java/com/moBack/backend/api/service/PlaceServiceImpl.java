@@ -11,11 +11,13 @@ import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
 import com.moBack.backend.api.dto.PlaceDTO;
 import com.moBack.backend.api.dto.PointDTO;
 import com.moBack.backend.api.entity.Place;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import com.moBack.backend.api.dao.PlaceRepository;
+import org.springframework.util.concurrent.ListenableFuture;
 
 @Service
 @Slf4j
@@ -23,6 +25,7 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	private PlaceRepository placeRepository;
 	private KafkaTemplate<Integer, Integer> kafkaTemplate;
+	private ListenableFuture listenableFuture;
 
 	public PlaceServiceImpl(PlaceRepository placeRepository, KafkaTemplate kafkaTemplate) {
 		this.placeRepository = placeRepository;
@@ -68,5 +71,10 @@ public class PlaceServiceImpl implements PlaceService {
 	@Transactional
 	public void deleteById(int id) {
 		placeRepository.deleteById(id);
+	}
+
+	@Override
+	public void setKafkaTemplate(KafkaTemplate kafkaTemplate) {
+		this.kafkaTemplate = kafkaTemplate;
 	}
 }
