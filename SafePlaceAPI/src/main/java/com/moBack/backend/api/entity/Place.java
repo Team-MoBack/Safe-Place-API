@@ -4,12 +4,10 @@ import com.moBack.backend.api.dto.PointDTO;
 import lombok.*;
 import org.geolatte.geom.Point;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.geolatte.geom.builder.DSL.g;
 import static org.geolatte.geom.builder.DSL.point;
@@ -36,6 +34,9 @@ public class Place {
 	@Column(name="number_of_people")
 	private int numberOfPeople;
 
+	@OneToMany(mappedBy="place")
+	private List<Review> reviewList;
+
 	public Place(String name, Point position) {
 		this.name = name;
 		this.position = position;
@@ -48,4 +49,13 @@ public class Place {
 				.build();
 	}
 
+	public void addReview(Review review) {
+		reviewList.add(review);
+		review.setPlace(this);
+	}
+
+	public void deleteReview(Review review) {
+		reviewList.remove(review);
+		review.setPlace(null);
+	}
 }

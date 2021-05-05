@@ -2,15 +2,9 @@ package com.moBack.backend.api.entity;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="account")
@@ -32,7 +26,20 @@ public class Account {
 	
 	@Column(name="email")
 	private String email;
-	
+
+	@OneToMany(mappedBy="account")
+	List<Review> reviewList;
+
 	@Column(name="password")
 	private String password;
+
+	public void addReview(Review review) {
+		reviewList.add(review);
+		review.setAccount(this);
+	}
+
+	public void deleteReview(Review review) {
+		reviewList.remove(review);
+		review.setAccount(null);
+	}
 }
