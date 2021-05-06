@@ -1,6 +1,7 @@
 package com.moBack.backend.api.dao;
 
 import com.moBack.backend.api.AbstractTest;
+import com.moBack.backend.api.entity.Account;
 import com.moBack.backend.api.entity.Place;
 import com.moBack.backend.api.dto.PointDTO;
 import com.moBack.backend.api.entity.Review;
@@ -18,13 +19,15 @@ import static org.geolatte.geom.builder.DSL.g;
 import static org.geolatte.geom.builder.DSL.point;
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
 
-//@Transactional
-public class PlaceJpaTest extends AbstractTest {
+@Transactional
+public class JpaTest extends AbstractTest {
 
     @Autowired
-    PlaceRepository placeRepository;
+    private AccountRepository accountRepository;
     @Autowired
-    ReviewRepository reviewRepository;
+    private PlaceRepository placeRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Before
     public void setup() {
@@ -36,11 +39,6 @@ public class PlaceJpaTest extends AbstractTest {
 
     @Test
     public void getPlacesTest() throws ParseException {
-     /* jts version
-        String pointWKT = String.format("POINT(%s %s)",37.4845142,37.5188072);
-        Point point = (Point)new WKTReader().read(pointWKT);
-      */
-        //Point<G2D> pnt = point(WGS84,g(37.4847142,37.5188072));
         PointDTO pointDTO = new PointDTO(37.4847142, 37.5188072);
         Assert.assertTrue(placeRepository.getPlaces(pointDTO, 200).size() > 0);
     }
@@ -57,14 +55,27 @@ public class PlaceJpaTest extends AbstractTest {
                 .position(point(WGS84,g(37.4847142,37.5188072)))
                 .reviewList(new ArrayList<>())
                 .build();
-        placeRepository.save(place);
+
+        Account account = Account.builder()
+                .email("test1@gmail.com")
+                .firstName("firstName")
+                .lastName("lastName")
+                .password("1234")
+                .reviewList(new ArrayList<>())
+                .build();
+
         Review review = Review.builder()
                 .rating(3)
                 .comment("so so").build();
+
         place.addReview(review);
-        reviewRepository.save(review);
-//        Review savedReview = result.getReviewList().get(0);
-//        Assert.assertEquals(review.getRating(),savedReview.getRating());
-//        Assert.assertEquals(review.getComment(),savedReview.getComment());
+        placeRepository.save(place);
+
+        account.addReview(review);
+        accountRepository.save(account);
+
+        Review returnedReview = reviewRepository.save(review);
+        Assert.assertNotNull(returnedReview.getPlace());
+        Assert.assertNotNull(returnedReview.getAccount());
     }
 }
