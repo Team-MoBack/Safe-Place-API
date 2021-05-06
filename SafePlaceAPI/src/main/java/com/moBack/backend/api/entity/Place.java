@@ -6,8 +6,7 @@ import org.geolatte.geom.Point;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import static org.geolatte.geom.builder.DSL.g;
 import static org.geolatte.geom.builder.DSL.point;
@@ -35,7 +34,7 @@ public class Place {
 	private int numberOfPeople;
 
 	@OneToMany(mappedBy="place")
-	private List<Review> reviewList;
+	private Set<Review> reviewList;
 
 	public Place(String name, Point position) {
 		this.name = name;

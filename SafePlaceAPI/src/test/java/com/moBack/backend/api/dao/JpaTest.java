@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import static org.geolatte.geom.builder.DSL.g;
 import static org.geolatte.geom.builder.DSL.point;
@@ -29,12 +30,33 @@ public class JpaTest extends AbstractTest {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    private Place place1 = Place.builder()
+            .name("test-place-1")
+            .position(point(WGS84,g(37.4847142,37.5188072)))
+            .reviewList(new HashSet<>())
+            .build();
+
+    private Place place2 = Place.builder()
+            .name("test-place-2")
+            .position(point(WGS84,g(37.4847142,37.5188072)))
+            .reviewList(new HashSet<>())
+            .build();
+
+    private Account account1 = Account.builder()
+            .email("test1@gmail.com")
+            .firstName("firstName")
+            .lastName("lastName")
+            .password("1234")
+            .reviewList(new HashSet<>())
+            .build();
+
+    private Review review = Review.builder()
+            .rating(3)
+            .comment("so so").build();
+
     @Before
     public void setup() {
-        placeRepository.save(Place.builder()
-                .name("test-place-1")
-                .position(point(WGS84,g(37.4847142,37.5188072)))
-                .build());
+        placeRepository.save(place1);
     }
 
     @Test
@@ -50,32 +72,29 @@ public class JpaTest extends AbstractTest {
 
     @Test
     public void addReviewTest() {
-        Place place = Place.builder()
-                .name("test-place-2")
-                .position(point(WGS84,g(37.4847142,37.5188072)))
-                .reviewList(new ArrayList<>())
-                .build();
+        place2.addReview(review);
+        place2 = placeRepository.save(place2);
 
-        Account account = Account.builder()
-                .email("test1@gmail.com")
-                .firstName("firstName")
-                .lastName("lastName")
-                .password("1234")
-                .reviewList(new ArrayList<>())
-                .build();
-
-        Review review = Review.builder()
-                .rating(3)
-                .comment("so so").build();
-
-        place.addReview(review);
-        placeRepository.save(place);
-
-        account.addReview(review);
-        accountRepository.save(account);
+        account1.addReview(review);
+        account1 = accountRepository.save(account1);
 
         Review returnedReview = reviewRepository.save(review);
         Assert.assertNotNull(returnedReview.getPlace());
         Assert.assertNotNull(returnedReview.getAccount());
+    }
+
+    @Test
+    public void deleteReviewTest() {
+        Review review = Review.builder()
+                .rating(3)
+                .comment("so so").build();
+
+        place2.deleteReview(review);
+        placeRepository.save(place2);
+
+        account1.deleteReview(review);
+        accountRepository.save(account1);
+
+        reviewRepository.delete(review);
     }
 }

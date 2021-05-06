@@ -3,8 +3,7 @@ package com.moBack.backend.api.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="account")
@@ -28,7 +27,7 @@ public class Account {
 	private String email;
 
 	@OneToMany(mappedBy="account")
-	List<Review> reviewList;
+	Set<Review> reviewList;
 
 	@Column(name="password")
 	private String password;
