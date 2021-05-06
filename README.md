@@ -6,7 +6,7 @@
 <img src=./images/junction.png width="300">  
 
 ## Overview
----------------
+
 ### 1. What is Safe Place?
   
 Living in COVID Era, do you want a safe outing?  
@@ -20,7 +20,6 @@ You can check or evaluate whether employees are clean, customers are wearing mas
 * __Designer :__ `Ye Ajeong`
 
 ## Functions
---------------
 
 1. Self-employed people can register their places with the app.
 2. And with photos, you can prove that your store has fewer customers and is clean and promote it to app users.
