@@ -35,9 +35,6 @@ You can check or evaluate whether employees are clean, customers are wearing mas
 
 ![Screen Shot 2021-05-06 at 17 39 16](https://user-images.githubusercontent.com/22807942/117269308-2474ec00-ae93-11eb-99e9-24283c084484.png)
 
-## API Documentation
-[Swagger Hub Link](https://app.swaggerhub.com/apis-docs/JaeguKim/safe-place_rest_api/0.0.0#/)  
-
 ## CI/CD Workflow
 Currently this project is only available in DockerHub.
 ![img](/images/cicd.png)
