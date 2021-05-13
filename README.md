@@ -28,7 +28,7 @@ You can check or evaluate whether employees are clean, customers are wearing mas
 
 ## Architecture
 
-![architecture](https://user-images.githubusercontent.com/22807942/116087811-35c43880-a6dc-11eb-986c-bb7876fee293.png)
+![architecture-v2](https://user-images.githubusercontent.com/22807942/117984724-0a477c00-b373-11eb-9490-d8b73ebea8ec.png)
 
 ## ER Diagram  
 
