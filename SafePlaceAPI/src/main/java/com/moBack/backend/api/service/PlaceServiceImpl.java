@@ -1,5 +1,8 @@
 package com.moBack.backend.api.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -7,9 +10,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import javax.transaction.Transactional;
 import com.moBack.backend.api.config.KafkaConfig;
-import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
+import com.moBack.backend.api.dto.PeopleInfoDTO;
 import com.moBack.backend.api.dto.PlaceDTO;
 import com.moBack.backend.api.dto.PointDTO;
+import com.moBack.backend.api.entity.PeopleInfo;
 import com.moBack.backend.api.entity.Place;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -23,7 +27,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public class PlaceServiceImpl implements PlaceService {
 	
 	private PlaceRepository placeRepository;
-	private KafkaTemplate<Integer, Integer> kafkaTemplate;
+	private KafkaTemplate<Integer, PeopleInfo> kafkaTemplate;
 	private ListenableFuture listenableFuture;
 
 	public PlaceServiceImpl(PlaceRepository placeRepository, KafkaTemplate kafkaTemplate) {
@@ -49,8 +53,13 @@ public class PlaceServiceImpl implements PlaceService {
 
 	@Override
 	@Transactional
-	public boolean produceNumberOfPeople(NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO) {
-		final ProducerRecord<Integer, Integer> record = new ProducerRecord<>(KafkaConfig.NUMBER_OF_PEOPLE_BY_PLACE_TOPIC,numberOfPeopleInPlaceDTO.getId(),numberOfPeopleInPlaceDTO.getNumberOfPeople());
+	public boolean producePeopleInfo(PeopleInfoDTO peopleInfoDTO) {
+		PeopleInfo peopleInfo = PeopleInfo.builder().id(peopleInfoDTO.getId())
+				.numberOfCurrentPeople(peopleInfoDTO.getNumberOfCurrentPeople())
+				.numberOfNewPeople(peopleInfoDTO.getNumberOfNewPeople())
+				.time(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME))
+				.build();
+		final ProducerRecord<Integer, PeopleInfo> record = new ProducerRecord<>(KafkaConfig.NUMBER_OF_PEOPLE_BY_PLACE_TOPIC, peopleInfoDTO.getId(), peopleInfo);
 		try {
 			kafkaTemplate.send(record).get(2, TimeUnit.SECONDS);
 			return true;

@@ -1,11 +1,16 @@
 com/moBack/backend/dao/PlaceRepository.java
  com.moBack.backend.dao.PlaceRepository
-com/moBack/backend/config/KafkaConfig.java
- com.moBack.backend.config.KafkaConfig
 com/moBack/backend/BackendApplication.java
  com.moBack.backend.BackendApplication
 com/moBack/backend/entity/Place.java
  com.moBack.backend.entity.Place
  com.moBack.backend.entity.Place$PlaceBuilder
+com/moBack/backend/config/KafkaConfig.java
+ com.moBack.backend.config.KafkaConfig
+com/moBack/backend/deserializer/PeopleInfoDeserializer.java
+ com.moBack.backend.deserializer.PeopleInfoDeserializer
+com/moBack/backend/entity/PeopleInfo.java
+ com.moBack.backend.entity.PeopleInfo
+ com.moBack.backend.entity.PeopleInfo$PeopleInfoBuilder
 com/moBack/backend/consumer/PlaceInfoMessageListener.java
  com.moBack.backend.consumer.PlaceInfoMessageListener

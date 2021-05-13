@@ -1,7 +1,7 @@
 package com.moBack.backend.api.controller;
 
 import com.moBack.backend.api.AbstractTest;
-import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
+import com.moBack.backend.api.dto.PeopleInfoDTO;
 import com.moBack.backend.api.entity.Place;
 import com.moBack.backend.api.rest.PlaceController;
 import com.moBack.backend.api.service.PlaceService;
@@ -32,15 +32,15 @@ public class PlaceControllerTest extends AbstractTest {
 
     @Test
     public void successfulProduceNumberOfPeopleTest() {
-        NumberOfPeopleInPlaceDTO dto = new NumberOfPeopleInPlaceDTO(10,10);
-        Mockito.when(placeService.produceNumberOfPeople(dto)).thenReturn(true);
+        PeopleInfoDTO dto = new PeopleInfoDTO(10,10,2);
+        Mockito.when(placeService.producePeopleInfo(dto)).thenReturn(true);
         controller.produceNumberOfPeople(dto);
     }
 
     @Test(expected=ResponseStatusException.class)
     public void failedProduceNumberOfPeopleTest() {
-        NumberOfPeopleInPlaceDTO dto = new NumberOfPeopleInPlaceDTO(10,10);
-        Mockito.when(placeService.produceNumberOfPeople(dto)).thenReturn(false);
+        PeopleInfoDTO dto = new PeopleInfoDTO(10,10,2);
+        Mockito.when(placeService.producePeopleInfo(dto)).thenReturn(false);
         controller.produceNumberOfPeople(dto);
     }
 }

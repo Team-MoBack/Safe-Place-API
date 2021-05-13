@@ -1,5 +1,7 @@
 package com.moBack.backend.config;
 
+import com.moBack.backend.deserializer.PeopleInfoDeserializer;
+import com.moBack.backend.entity.PeopleInfo;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +18,12 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConfig {
 
-    public static final String NUMBER_OF_PEOPLE_BY_PLACE_TOPIC = "number-of-people-by-place";
+    public static final String NUMBER_OF_PEOPLE_BY_PLACE_TOPIC = "people-info-by-place";
     private static final Integer Concurrency = 3;
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Integer,Integer> batchFactory() {
-        ConcurrentKafkaListenerContainerFactory<Integer,Integer> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<Integer, PeopleInfo> batchFactory() {
+        ConcurrentKafkaListenerContainerFactory<Integer,PeopleInfo> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(Concurrency);
         factory.setBatchListener(true);
@@ -30,7 +32,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConsumerFactory<Integer,Integer> consumerFactory() {
+    public ConsumerFactory<Integer,PeopleInfo> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
@@ -39,7 +41,7 @@ public class KafkaConfig {
         Map<String,Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, PeopleInfoDeserializer.class);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,true);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
         return props;

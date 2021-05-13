@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
+import com.moBack.backend.api.dto.PeopleInfoDTO;
 import com.moBack.backend.api.entity.Place;
 import com.moBack.backend.api.service.PlaceService;
 import com.moBack.backend.api.dto.PlaceDTO;
@@ -76,8 +76,8 @@ public class PlaceController {
 	}
 
 	@PostMapping("/update/people")
-	public void produceNumberOfPeople(@RequestBody NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO) {
-		if (placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO) == false) {
+	public void produceNumberOfPeople(@RequestBody PeopleInfoDTO peopleInfoDTO) {
+		if (placeService.producePeopleInfo(peopleInfoDTO) == false) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to update number of people by place id");
 		}
 	}

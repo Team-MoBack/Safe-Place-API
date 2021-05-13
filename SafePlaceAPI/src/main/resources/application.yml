@@ -12,11 +12,6 @@ spring:
   jpa:
     database: mysql
     database-platform: org.hibernate.spatial.dialect.mysql.MySQL56SpatialDialect
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
-      value-serializer: org.apache.kafka.common.serialization.IntegerSerializer
 logging:
   level:
     org:

@@ -2,7 +2,7 @@ package com.moBack.backend.api.service;
 
 import com.moBack.backend.api.AbstractTest;
 import com.moBack.backend.api.dao.PlaceRepository;
-import com.moBack.backend.api.dto.NumberOfPeopleInPlaceDTO;
+import com.moBack.backend.api.dto.PeopleInfoDTO;
 import com.moBack.backend.api.dto.PlaceDTO;
 import com.moBack.backend.api.entity.Place;
 import com.moBack.backend.api.dto.PointDTO;
@@ -59,15 +59,16 @@ public class PlaceServiceTest extends AbstractTest {
 
     @Test
     public void produceNumberOfPeopleTest() throws InterruptedException, ExecutionException, TimeoutException {
-        NumberOfPeopleInPlaceDTO numberOfPeopleInPlaceDTO = NumberOfPeopleInPlaceDTO.builder()
+        PeopleInfoDTO peopleInfoDTO = PeopleInfoDTO.builder()
                 .id(1)
-                .numberOfPeople(10)
+                .numberOfCurrentPeople(10)
+                .numberOfNewPeople(2)
                 .build();
         Mockito.when(kafkaTemplate.send(Mockito.any(ProducerRecord.class))).thenReturn(listenableFuture);
-        Assert.assertTrue(placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO));
+        Assert.assertTrue(placeService.producePeopleInfo(peopleInfoDTO));
         SettableListenableFuture<SendResult<String, Object>> future = new SettableListenableFuture<>();
         future.setException(new RuntimeException());
         Mockito.when(kafkaTemplate.send(Mockito.any(ProducerRecord.class))).thenReturn(future);
-        Assert.assertFalse(placeService.produceNumberOfPeople(numberOfPeopleInPlaceDTO));
+        Assert.assertFalse(placeService.producePeopleInfo(peopleInfoDTO));
     }
 }
